@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "version": "1.0",
+    "units": "mass kg | power W | cost $M | data rate kbps | storage Gb | time months | delta-v m/s",
+    "note": "Values are rounded from public NASA/vendor fact sheets and sized for gameplay. Mark: verify each 'source' URL and adjust numbers before submission."
+  },
+  "constants": { "g0": 9.80665 },
+  "missions": [
+    {
+      "id": "artemis_ice",
+      "name": "Artemis Lunar South Pole Ice Scout",
+      "tagline": "Map water ice hiding in permanently shadowed craters.",
+      "inspired_by": "LRO, LCROSS, Artemis site selection",
+      "destination": "lunar_transfer",
+      "science_key": "lunar",
+      "delta_v_required": 950,
+      "budget_ceiling": 420,
+      "window_months": 30,
+      "ops_months_required": 12,
+      "transit_months": { "chemical": 1, "electric": 8 },
+      "solar_factor": 0.75,
+      "link_factor": 1.0,
+      "contact_hours_per_day": 8,
+      "min_science": 150,
+      "required": [["hydrogen"]],
+      "required_text": "At least one instrument that detects hydrogen/water ice.",
+      "brief": "Artemis crews need to know where ice is before they land. Solar power is reduced by low sun angles at the pole. The Moon is close, so radio links are fast.",
+      "source": "https://science.nasa.gov/mission/lro/"
+    },
+    {
+      "id": "mars_methane",
+      "name": "Mars Methane Orbiter",
+      "tagline": "Hunt for trace gases that could point to geology or life.",
+      "inspired_by": "ExoMars Trace Gas Orbiter, MAVEN, MRO",
+      "destination": "mars_transfer",
+      "science_key": "mars",
+      "delta_v_required": 1400,
+      "budget_ceiling": 750,
+      "window_months": 48,
+      "ops_months_required": 24,
+      "transit_months": { "chemical": 10, "electric": 22 },
+      "solar_factor": 0.43,
+      "link_factor": 0.15,
+      "contact_hours_per_day": 4,
+      "min_science": 140,
+      "required": [["trace_gas"]],
+      "required_text": "At least one trace-gas spectrometer.",
+      "brief": "Sunlight at Mars is under half of Earth's. Signals are slow: Mars is tens of millions of km away, so downlink rate falls with distance squared.",
+      "source": "https://science.nasa.gov/mission/maven/"
+    },
+    {
+      "id": "psyche_metal",
+      "name": "Psyche Metal Asteroid",
+      "tagline": "Visit a world that may be an exposed planetary core.",
+      "inspired_by": "NASA Psyche mission",
+      "destination": "belt_transfer",
+      "science_key": "psyche",
+      "delta_v_required": 2200,
+      "budget_ceiling": 1100,
+      "window_months": 42,
+      "ops_months_required": 20,
+      "transit_months": { "chemical": 30, "electric": 48 },
+      "solar_factor": 0.12,
+      "link_factor": 0.05,
+      "contact_hours_per_day": 2,
+      "min_science": 190,
+      "required": [["composition"], ["magnetic"]],
+      "required_text": "One composition instrument AND one magnetometer.",
+      "brief": "At about 2.9 AU sunlight is roughly 12% of Earth's. The delta-v to arrive and orbit is large, and the link is weak and shared on the Deep Space Network.",
+      "source": "https://science.nasa.gov/mission/psyche/"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "falcon9",
+      "name": "Falcon 9 Block 5 (expendable)",
+      "provider": "SpaceX",
+      "ascent_dv_ms": 9300,
+      "upper_stage_isp_s": 348,
+      "leo_kg": 22800,
+      "payload_kg": { "lunar_transfer": 5000, "mars_transfer": 4000, "belt_transfer": 1200 },
+      "cost": 70,
+      "confidence": "approx"
+    },
+    {
+      "id": "vulcan",
+      "name": "Vulcan Centaur VC4",
+      "provider": "United Launch Alliance",
+      "ascent_dv_ms": 9400,
+      "upper_stage_isp_s": 450,
+      "leo_kg": 22000,
+      "payload_kg": { "lunar_transfer": 8000, "mars_transfer": 6000, "belt_transfer": 3500 },
+      "cost": 110,
+      "confidence": "approx"
+    },
+    {
+      "id": "sls",
+      "name": "SLS Block 1",
+      "provider": "NASA",
+      "ascent_dv_ms": 9500,
+      "upper_stage_isp_s": 462,
+      "leo_kg": 95000,
+      "payload_kg": { "lunar_transfer": 27000, "mars_transfer": 19000, "belt_transfer": 8000 },
+      "cost": 2200,
+      "confidence": "approx"
+    }
+  ],
+  "buses": [
+    {
+      "id": "smallsat",
+      "name": "ESPA-Class Smallsat Bus",
+      "analog": "Lunar Flashlight / LCROSS class",
+      "propulsion": "chemical",
+      "dry_mass_kg": 180,
+      "max_prop_kg": 150,
+      "isp_s": 300,
+      "solar_w_1au": 600,
+      "base_power_w": 150,
+      "cost": 45,
+      "downlink_kbps": 1500,
+      "storage_gb": 32,
+      "dev_months": 14,
+      "life_months": 18
+    },
+    {
+      "id": "midclass",
+      "name": "Mid-Class Chemical Orbiter Bus",
+      "analog": "MAVEN / LADEE class",
+      "propulsion": "chemical",
+      "dry_mass_kg": 750,
+      "max_prop_kg": 1800,
+      "isp_s": 320,
+      "solar_w_1au": 2000,
+      "base_power_w": 350,
+      "cost": 140,
+      "downlink_kbps": 4000,
+      "storage_gb": 256,
+      "dev_months": 24,
+      "life_months": 48
+    },
+    {
+      "id": "flagship_sep",
+      "name": "Flagship Solar-Electric Bus",
+      "analog": "Psyche class (Hall thrusters)",
+      "propulsion": "electric",
+      "dry_mass_kg": 1400,
+      "max_prop_kg": 900,
+      "isp_s": 1800,
+      "solar_w_1au": 16000,
+      "base_power_w": 900,
+      "cost": 380,
+      "downlink_kbps": 6000,
+      "storage_gb": 1024,
+      "dev_months": 32,
+      "life_months": 90
+    }
+  ],
+  "instruments": [
+    { "id": "lend", "name": "Neutron Detector (LEND-class)", "analog": "LRO LEND", "mass_kg": 26.5, "power_w": 20, "cost": 18, "data_kbps": 2, "duty": 1.0, "dev_months": 18, "tags": ["hydrogen"], "science": { "lunar": 95 }, "blurb": "Neutrons escaping the surface are fewer where hydrogen (water ice) is buried." },
+    { "id": "lamp", "name": "UV Spectrograph (LAMP-class)", "analog": "LRO LAMP", "mass_kg": 17, "power_w": 6, "cost": 15, "data_kbps": 2, "duty": 1.0, "dev_months": 14, "tags": ["hydrogen"], "science": { "lunar": 60 }, "blurb": "Sees surface frost in permanently dark craters using starlight." },
+    { "id": "diviner", "name": "Thermal Radiometer (Diviner-class)", "analog": "LRO Diviner", "mass_kg": 12.6, "power_w": 20, "cost": 20, "data_kbps": 4, "duty": 1.0, "dev_months": 16, "tags": ["thermal"], "science": { "lunar": 55 }, "blurb": "Finds the coldest places where ice can survive for billions of years." },
+    { "id": "lola", "name": "Laser Altimeter (LOLA-class)", "analog": "LRO LOLA", "mass_kg": 13, "power_w": 40, "cost": 25, "data_kbps": 7, "duty": 1.0, "dev_months": 18, "tags": ["topography"], "science": { "lunar": 40, "psyche": 15 }, "blurb": "Builds precise terrain maps for landing-site safety." },
+    { "id": "minirf", "name": "Imaging Radar (Mini-RF-class)", "analog": "LRO Mini-RF", "mass_kg": 16, "power_w": 24, "cost": 30, "data_kbps": 100, "duty": 0.2, "dev_months": 20, "tags": ["ice_radar"], "science": { "lunar": 70 }, "blurb": "Radar returns can hint at ice layers under the surface." },
+
+    { "id": "nomad", "name": "Trace-Gas Spectrometer (NOMAD-class)", "analog": "ExoMars TGO NOMAD", "mass_kg": 32, "power_w": 70, "cost": 45, "data_kbps": 150, "duty": 0.3, "dev_months": 22, "tags": ["trace_gas"], "science": { "mars": 100 }, "blurb": "Detects methane at parts-per-billion by watching sunlight through the atmosphere." },
+    { "id": "acs", "name": "Atmospheric Chemistry Suite (ACS-class)", "analog": "ExoMars TGO ACS", "mass_kg": 34, "power_w": 60, "cost": 42, "data_kbps": 100, "duty": 0.3, "dev_months": 22, "tags": ["trace_gas"], "science": { "mars": 90 }, "blurb": "Three infrared channels that measure methane, water and aerosols." },
+    { "id": "ngims", "name": "Neutral Gas Mass Spectrometer (NGIMS-class)", "analog": "MAVEN NGIMS", "mass_kg": 12.4, "power_w": 27, "cost": 22, "data_kbps": 20, "duty": 0.5, "dev_months": 16, "tags": ["upper_atmo"], "science": { "mars": 40 }, "blurb": "Samples the upper atmosphere to study how Mars lost its air." },
+    { "id": "crism", "name": "Imaging Spectrometer (CRISM-class)", "analog": "MRO CRISM", "mass_kg": 32, "power_w": 60, "cost": 38, "data_kbps": 6000, "duty": 0.05, "dev_months": 20, "tags": ["mineralogy"], "science": { "mars": 55 }, "blurb": "Maps minerals that formed in water." },
+    { "id": "hirise", "name": "High-Res Camera (HiRISE-class)", "analog": "MRO HiRISE", "mass_kg": 65, "power_w": 60, "cost": 60, "data_kbps": 20000, "duty": 0.02, "dev_months": 24, "tags": ["imaging"], "science": { "mars": 35, "psyche": 20 }, "blurb": "Spectacular images, but very hungry for downlink bandwidth." },
+
+    { "id": "grns", "name": "Gamma-Ray & Neutron Spectrometer (GRNS-class)", "analog": "Psyche GRNS", "mass_kg": 29, "power_w": 25, "cost": 45, "data_kbps": 5, "duty": 1.0, "dev_months": 20, "tags": ["composition"], "science": { "psyche": 90 }, "blurb": "Reads the elements on the surface: iron, nickel, and more." },
+    { "id": "mag", "name": "Magnetometer (boom-mounted)", "analog": "Psyche Magnetometer", "mass_kg": 6, "power_w": 4, "cost": 20, "data_kbps": 1, "duty": 1.0, "dev_months": 14, "tags": ["magnetic"], "science": { "psyche": 85 }, "blurb": "A remnant magnetic field would be strong evidence of a former core." },
+    { "id": "msi", "name": "Multispectral Imager (twin cameras)", "analog": "Psyche Imager", "mass_kg": 25, "power_w": 30, "cost": 40, "data_kbps": 3000, "duty": 0.05, "dev_months": 18, "tags": ["imaging"], "science": { "psyche": 70 }, "blurb": "Shape, geology and surface color of the asteroid." },
+    { "id": "gravity", "name": "Radio Science (gravity mapping)", "analog": "Psyche gravity science", "mass_kg": 2, "power_w": 2, "cost": 10, "data_kbps": 1, "duty": 1.0, "dev_months": 12, "tags": ["gravity"], "science": { "psyche": 60 }, "blurb": "Tracks tiny changes in the radio signal to weigh the asteroid." }
+  ],
+  "tooltips": {
+    "mass": "Launch vehicles can only throw so much mass toward each destination. Every kilogram of fuel, instrument, or structure counts.",
+    "power": "Solar arrays collect less light the farther you go from the Sun (inverse square law). Instruments and the bus must stay under what the arrays produce.",
+    "budget": "Development plus launch cost must stay under the mission cost ceiling. Cheap rockets limit mass, expensive rockets limit budget.",
+    "data": "Instruments create data every day. The onboard recorder must hold it until the next contact with Earth.",
+    "comms": "Downlink rate drops with the square of distance, and Deep Space Network time is shared. If you make more data than you can send, science is lost.",
+    "time": "Everything must be built before the launch window closes. A missed window means waiting months or years for planets to line up again."
+  },
+  "citations": [
+    { "label": "NASA Science: Lunar Reconnaissance Orbiter (LEND, LAMP, Diviner, LOLA, Mini-RF)", "url": "https://science.nasa.gov/mission/lro/" },
+    { "label": "NASA Science: MAVEN (NGIMS)", "url": "https://science.nasa.gov/mission/maven/" },
+    { "label": "NASA Science: Psyche mission", "url": "https://science.nasa.gov/mission/psyche/" },
+    { "label": "NASA NSSDCA Master Catalog (spacecraft and instrument specs)", "url": "https://nssdc.gsfc.nasa.gov/nmc/" },
+    { "label": "NASA Planetary Data System", "url": "https://pds.nasa.gov/" },
+    { "label": "NASA Eyes on the Solar System: Deep Space Network Now", "url": "https://eyes.nasa.gov/dsn/dsn.html" }
+  ]
+}
