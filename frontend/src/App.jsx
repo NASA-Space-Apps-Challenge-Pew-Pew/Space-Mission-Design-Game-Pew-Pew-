@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Hud from "./components/hud/Hud.jsx";
 import Builder from "./components/builder/Builder.jsx";
 import Debrief from "./components/debrief/Debrief.jsx";
+import LaunchSequence from "./components/launch/LaunchSequence.jsx";
 
 const API = import.meta.env.VITE_API || "";
 const post = (path, body) =>
@@ -25,6 +26,8 @@ export default function App() {
     prop: 0,
   });
   const [ev, setEv] = useState(null);
+  const [simData, setSimData] = useState(null);
+  const [isLaunching, setIsLaunching] = useState(false);
   const [res, setRes] = useState(null);
   const [board, setBoard] = useState([]);
   const [player, setPlayer] = useState("");
@@ -70,13 +73,17 @@ export default function App() {
   const pickMission = (id) => {
     setMid(id);
     setSel({ vehicle: "falcon9", bus: "smallsat", instruments: [], prop: 0 });
+    setRes(null);
+    setSimData(null);
   };
 
   const launch = async () => {
     setBusy(true);
+    setRes(null);
     try {
       const r = await post("/api/simulate", { ...cfg, player: player.trim() || null });
-      setRes(r);
+      setSimData(r);
+      setIsLaunching(true);
       fetch(`${API}/api/leaderboard?mission_id=${mid}`)
         .then((x) => x.json())
         .then(setBoard)
@@ -85,6 +92,11 @@ export default function App() {
       setErr("Simulation failed. Check the backend.");
     }
     setBusy(false);
+  };
+
+  const handleLaunchComplete = () => {
+    setIsLaunching(false);
+    setRes(simData);
   };
 
   if (err)
@@ -114,13 +126,13 @@ export default function App() {
     );
 
   return (
-    <div className="mx-auto max-w-7xl p-4 md:p-6">
+    <div className="mx-auto max-w-7xl p-4 md:p-6 font-sans">
       <header className="mb-6 border-b border-slate-700 pb-5">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>
             <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-50 flex items-center gap-2">
               <span className="inline-block h-3 w-3 rounded-full bg-cyan-400 animate-ping"></span>
-              PEW PEW: Mission Design Game
+              PEW PEW: Space Mission Design Game
             </h1>
             <p className="text-xs md:text-sm text-slate-400 mt-1">
               NASA Space Apps Challenge 2026 · Systems Engineering Trade-Off Simulator
@@ -182,16 +194,25 @@ export default function App() {
               />
               <button
                 onClick={launch}
-                disabled={busy}
+                disabled={busy || isLaunching}
                 className="rounded-md bg-gradient-to-r from-cyan-400 to-teal-400 px-5 py-2 font-bold text-slate-950 transition hover:from-cyan-300 hover:to-teal-300 disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                {busy ? "Simulating…" : "Launch Mission"}
+                {busy ? "Calculating…" : isLaunching ? "Simulating…" : "Launch Mission"}
               </button>
             </div>
           </div>
         </aside>
       </div>
 
+      {/* Screen 4: Animated Launch Sequence Overlay */}
+      {isLaunching && simData && (
+        <LaunchSequence
+          res={simData}
+          onComplete={handleLaunchComplete}
+        />
+      )}
+
+      {/* Screen 5: Post-Mission Diagnostic Debrief Modal */}
       {res && (
         <Debrief
           res={res}

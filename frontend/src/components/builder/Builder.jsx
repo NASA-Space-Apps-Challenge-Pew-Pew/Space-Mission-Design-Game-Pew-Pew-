@@ -17,10 +17,12 @@ export default function Builder({ data, mission, sel, setSel, bus }) {
   );
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-6">
       <section>
-        <h3 className="mb-2 text-sm font-semibold text-slate-300">1. Launch vehicle</h3>
-        <div className="grid gap-2">
+        <h3 className="mb-2 text-sm font-semibold tracking-wide text-slate-300 uppercase">
+          1. Launch vehicle
+        </h3>
+        <div className="grid gap-2.5">
           {data.vehicles.map((v) => (
             <Choice
               key={v.id}
@@ -34,8 +36,10 @@ export default function Builder({ data, mission, sel, setSel, bus }) {
       </section>
 
       <section>
-        <h3 className="mb-2 text-sm font-semibold text-slate-300">2. Spacecraft bus</h3>
-        <div className="grid gap-2">
+        <h3 className="mb-2 text-sm font-semibold tracking-wide text-slate-300 uppercase">
+          2. Spacecraft bus
+        </h3>
+        <div className="grid gap-2.5">
           {data.buses.map((b) => (
             <Choice
               key={b.id}
@@ -52,39 +56,67 @@ export default function Builder({ data, mission, sel, setSel, bus }) {
             />
           ))}
         </div>
-        <label className="mt-3 block text-sm text-slate-300">
-          Propellant: <span className="num font-semibold">{sel.prop} kg</span>
-          <input
-            type="range"
-            min="0"
-            max={bus.max_prop_kg}
-            step="10"
-            value={sel.prop}
-            onChange={(e) => setSel((s) => ({ ...s, prop: +e.target.value }))}
-            className="mt-1 w-full accent-cyan-300"
-          />
-        </label>
+        <div className="mt-4 p-3 rounded-lg border border-slate-800 bg-slate-900/50">
+          <label className="block text-sm text-slate-300">
+            Propellant Load: <span className="num font-bold text-cyan-300">{sel.prop} kg</span>{" "}
+            <span className="text-xs text-slate-500">(Max: {bus.max_prop_kg} kg)</span>
+            <input
+              type="range"
+              min="0"
+              max={bus.max_prop_kg}
+              step="10"
+              value={sel.prop}
+              onChange={(e) => setSel((s) => ({ ...s, prop: +e.target.value }))}
+              className="mt-2 w-full accent-cyan-400 cursor-pointer"
+            />
+          </label>
+        </div>
       </section>
 
       <section>
-        <h3 className="mb-1 text-sm font-semibold text-slate-300">3. Instruments</h3>
-        <p className="mb-2 text-xs text-slate-400">Goal: {mission.required_text}</p>
-        <div className="grid gap-2 sm:grid-cols-2">
+        <div className="flex items-baseline justify-between mb-1">
+          <h3 className="text-sm font-semibold tracking-wide text-slate-300 uppercase">
+            3. Scientific Instruments
+          </h3>
+          <span className="text-xs font-mono text-cyan-400">
+            Selected: {sel.instruments.length}
+          </span>
+        </div>
+        <p className="mb-3 text-xs text-slate-400 bg-slate-900/60 border border-slate-800 p-2 rounded">
+          <span className="font-semibold text-slate-300">Mission Requirement:</span> {mission.required_text}
+        </p>
+        <div className="grid gap-2.5 sm:grid-cols-2">
           {insts.map((i) => {
             const sc = i.science[key] || 0;
+            const isSelected = sel.instruments.includes(i.id);
             return (
               <Choice
                 key={i.id}
-                active={sel.instruments.includes(i.id)}
+                active={isSelected}
                 onClick={() => toggle(i.id)}
                 title={i.name}
                 sub={i.blurb}
               >
-                <div className="num mt-1.5 text-xs text-slate-300">
-                  {i.mass_kg} kg · {i.power_w} W · ${i.cost}M · {i.data_kbps} kbps
+                {/* Stat-delta chips */}
+                <div className="mt-2 flex flex-wrap gap-1.5 text-[11px] font-mono">
+                  <span className="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300">
+                    +{i.mass_kg}kg
+                  </span>
+                  <span className="bg-slate-800 px-1.5 py-0.5 rounded text-amber-300">
+                    +{i.power_w}W
+                  </span>
+                  <span className="bg-slate-800 px-1.5 py-0.5 rounded text-emerald-300">
+                    +${i.cost}M
+                  </span>
+                  <span className="bg-slate-800 px-1.5 py-0.5 rounded text-blue-300">
+                    {i.data_kbps}kbps
+                  </span>
                 </div>
-                <div className="text-xs" style={{ color: sc ? COLORS.ok : COLORS.warn }}>
-                  {sc ? `${sc} science points here` : "No science value for this mission"}
+                <div
+                  className="mt-2 text-xs font-semibold"
+                  style={{ color: sc ? COLORS.ok : COLORS.warn }}
+                >
+                  {sc ? `★ +${sc} science points` : "0 science points for this mission"}
                 </div>
               </Choice>
             );
