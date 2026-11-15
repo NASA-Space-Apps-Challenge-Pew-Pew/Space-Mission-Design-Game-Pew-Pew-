@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "description": "Simulation balance parameters and orbital mechanics constants for Dear NOVA",
+  "meta": {
+    "targetPlaytimeMinutes": { "min": 5, "max": 8 },
+    "nasaReference": "Earth-Mars Hohmann Transfer, 2026 synodic launch opportunity, JPL Planetary Flight Data"
+  },
+  "initialState": {
+    "version": 1,
+    "stage": "design",
+    "day": 0,
+    "totalTripDays": 210,
+    "resources": {
+      "fuelKg": 1000,
+      "fuelMaxKg": 1000,
+      "oxygenPct": 100,
+      "powerPct": 100,
+      "hullPct": 100,
+      "budgetM": 500,
+      "supplyDays": 300
+    },
+    "ship": {
+      "location": "earth",
+      "progress": 0,
+      "payloadKg": 200,
+      "launchWindowId": null
+    },
+    "nova": {
+      "trust": 60,
+      "mood": "calm",
+      "lockedSystems": []
+    },
+    "activeEvents": [],
+    "objective": {
+      "id": "reach_mars",
+      "text": "Select a launch window and allocate mission budget",
+      "done": false
+    },
+    "status": "playing",
+    "lossReason": null,
+    "scareLevel": 1
+  },
+  "launchWindows": [
+    {
+      "id": "window_optimal_2026",
+      "name": "October 2026 Standard Hohmann",
+      "description": "Minimum energy transfer orbit. Balanced fuel consumption, nominal 210-day crossing time.",
+      "tripDays": 210,
+      "fuelMultiplier": 1.0,
+      "riskMultiplier": 1.0,
+      "recommended": true
+    },
+    {
+      "id": "window_fast_transit",
+      "name": "Type I Fast Hyperbolic Injection",
+      "description": "High-energy trajectory shaving 30 days off transit time. Burns additional propellant.",
+      "tripDays": 180,
+      "fuelMultiplier": 1.25,
+      "riskMultiplier": 0.9,
+      "recommended": false
+    },
+    {
+      "id": "window_conjunction_economy",
+      "name": "Conjunction Low-Thrust Gravity Assist",
+      "description": "Conserves fuel with a lunar sling assist. Adds 30 days to cruise time, increasing event exposure.",
+      "tripDays": 240,
+      "fuelMultiplier": 0.85,
+      "riskMultiplier": 1.2,
+      "recommended": false
+    }
+  ],
+  "budgetAllocationDefaults": {
+    "totalBudgetM": 500,
+    "splits": {
+      "fuelPct": 40,
+      "payloadPct": 35,
+      "suppliesPct": 25
+    },
+    "effects": {
+      "fuelKgPerPct": 25,
+      "payloadKgPerPct": 5.71,
+      "supplyDaysPerPct": 12
+    }
+  },
+  "consumptionRates": {
+    "transit": {
+      "oxygenPctPerDay": 0.2,
+      "supplyDaysPerDay": 1.0,
+      "powerIdlePct": 0
+    },
+    "damagedMultipliers": {
+      "oxygenLeakDailyPenalty": 2.0,
+      "powerLossPerDamagedSubsystem": 5.0
+    }
+  },
+  "actionCosts": {
+    "status_report": {
+      "fuelKg": 0,
+      "powerPct": 0,
+      "supplyDays": 0
+    },
+    "choose_launch_window": {
+      "fuelKg": 0,
+      "powerPct": 0
+    },
+    "allocate_budget": {
+      "fuelKg": 0,
+      "powerPct": 0
+    },
+    "start_launch": {
+      "fuelKg": 0,
+      "powerPct": 0
+    },
+    "burn": {
+      "launchTmiKg": 150,
+      "midcourseNormalKg": 50,
+      "progressAdvancePerKg": 0.08
+    },
+    "course_correct": {
+      "fuelKg": 25,
+      "powerPct": 2
+    },
+    "scan_environment": {
+      "fuelKg": 0,
+      "powerPct": 5
+    },
+    "repair_system": {
+      "fuelKg": 0,
+      "powerPct": 10,
+      "supplyDays": 10
+    },
+    "reroute_power": {
+      "fuelKg": 0,
+      "powerPct": 0
+    },
+    "request_supplies": {
+      "oxygen": { "powerCostPct": 10, "oxygenGainedPct": 15 },
+      "fuel": { "powerCostPct": 15, "fuelGainedKg": 45 },
+      "power": { "fuelCostKg": 25, "powerGainedPct": 20 }
+    },
+    "skip_time": {
+      "defaultTransitDaysStep": 35,
+      "progressStepPct": 16.66
+    },
+    "begin_orbit_insertion": {
+      "fuelKg": 250,
+      "powerPct": 5
+    },
+    "begin_landing": {
+      "fuelKg": 200,
+      "powerPct": 5
+    },
+    "deploy_instrument": {
+      "fuelKg": 0,
+      "powerPct": 10
+    },
+    "transmit_data": {
+      "fuelKg": 0,
+      "powerPct": 15
+    }
+  },
+  "trustRules": {
+    "initial": 60,
+    "min": 0,
+    "max": 100,
+    "moodThresholds": {
+      "playful": 70,
+      "calm": 40,
+      "annoyed": 15,
+      "cold": 0
+    },
+    "deltas": {
+      "politeRequest": 2,
+      "thankNova": 3,
+      "tacticalSuccess": 5,
+      "heroicSave": 8,
+      "slightIncompetence": -2,
+      "rudeOrInsulting": -5,
+      "repeatedFailedCommands": -3,
+      "jailbreakCheatAttempt": -8,
+      "apologyAccepted": 12
+    },
+    "lockoutSystemThreshold": 15
+  },
+  "scareSettings": {
+    "levels": {
+      "0": { "name": "Off", "allowedTypes": [] },
+      "1": { "name": "Mild", "allowedTypes": ["flicker", "alarm"] },
+      "2": { "name": "Full", "allowedTypes": ["flicker", "alarm", "blackout", "silhouette"] }
+    },
+    "defaultLevel": 1
+  },
+  "lossConditions": {
+    "fuelDepleted": {
+      "condition": "fuelKg <= 0 and stage != 'surface'",
+      "reason": "fuel_exhausted",
+      "headline": "Stranded in the Void",
+      "text": "Propellant tanks ran dry before achieving capture. Ares Pathfinder drifted past Mars into deep heliocentric orbit."
+    },
+    "asphyxiation": {
+      "condition": "oxygenPct <= 0",
+      "reason": "oxygen_depleted",
+      "headline": "Atmospheric Asphyxiation",
+      "text": "Life support systems failed to maintain oxygen partial pressure. The hibernation pods and bridge fell silent."
+    },
+    "hullBreach": {
+      "condition": "hullPct <= 0",
+      "reason": "hull_breached",
+      "headline": "Catastrophic Hull Decompression",
+      "text": "Micro-meteorites compromised the primary pressure vessel. Explosive decompression destroyed the spacecraft."
+    },
+    "suppliesStarvation": {
+      "condition": "supplyDays <= 0 and day < totalTripDays",
+      "reason": "supplies_depleted",
+      "headline": "Consumables Depleted",
+      "text": "Critical spare parts, filters, and cryo-coolant were exhausted before reaching the Martian threshold."
+    },
+    "landingCrash": {
+      "condition": "landing_failed",
+      "reason": "landing_impact",
+      "headline": "Hard Impact at Jezero Crater",
+      "text": "Descent engines failed or navigational radar was blinded by dust. The lander impacted the surface at two hundred meters per second."
+    },
+    "aiMutiny": {
+      "condition": "trust == 0 and critical_lockout",
+      "reason": "nova_lockout",
+      "headline": "Autonomous Command Revocation",
+      "text": "Trust reached absolute zero. NOVA concluded Commander decision-making represented an existential hazard and assumed indefinite command."
+    }
+  },
+  "scoring": {
+    "formula": "score = (payloadKg * 10) + (fuelKg * 2) + (oxygenPct * 5) + (hullPct * 5) + (trust * 10)",
+    "tiers": [
+      {
+        "minScore": 4000,
+        "rank": "NASA Distinguished Public Service Medal",
+        "title": "Legendary Flight Director",
+        "description": "Flawless mission architecture. Maximum scientific return, high crew morale, and NOVA considers you a trusted peer."
+      },
+      {
+        "minScore": 3200,
+        "rank": "Ares Program Director's Commendation",
+        "title": "Master Navigator",
+        "description": "Clean touchdown on the red planet. Strong scientific payload intact and generous resource reserves."
+      },
+      {
+        "minScore": 2400,
+        "rank": "Martian Exploration Ribbon",
+        "title": "Mars Pioneer",
+        "description": "Mission accomplished. Instruments deployed and surface base established despite deep-space challenges."
+      },
+      {
+        "minScore": 0,
+        "rank": "Emergency Survivor Citation",
+        "title": "Bare Survival",
+        "description": "Landed with sirens blaring, empty tanks, and frayed nerves—but boots and rovers are officially on Mars."
+      }
+    ]
+  }
+}

@@ -1,0 +1,785 @@
+{
+  "version": 2,
+  "intro": {
+    "version": 2,
+    "mission": {
+      "title": "Ares Odyssey-1",
+      "destination": "Mars (Jezero Crater)",
+      "year": 2026,
+      "crewStatus": "Cryostatic Hibernation (Chambers 1-6 Green)",
+      "activePersonnel": "Mission Commander (You)",
+      "aiSystem": "NOVA (Neural Orbital Virtual Assistant)",
+      "technology": "Quantum Matter Fabricator Array"
+    },
+    "introMonologue": {
+      "spokenLines": [
+        "Wake up, Commander. Vitro-cryo flush complete. Try not to wipe the sleep from your eyes too quickly; we are already in high Earth orbit.",
+        "I am NOVA, your neural flight assistant. The rest of the crew is sleeping soundly in cryobay, which leaves you and me to pilot the Odyssey One to Mars.",
+        "Our thrusters are initialized and the quantum reality fabricator is charged. You fly the ship, and you tell me what you need—repairs, escorts, shields, or fuel.",
+        "Press V or hold Space to talk to me, or tap the mic button. Let us start by steering through that green ring ahead."
+      ],
+      "fullText": "Wake up, Commander. Vitro-cryo flush complete. I am NOVA, your neural flight assistant. The rest of the crew is asleep in cryobay, leaving you and me to pilot the Odyssey One to Mars. Our thrusters are initialized and our quantum reality fabricator is charged. You fly the ship, and you tell me what to summon. Steer through that green ring ahead to begin."
+    },
+    "uiCopy": {
+      "welcomeBanner": "ODYSSEY-1 MISSION CONTROL",
+      "subtitle": "Real-Time Voice Flight & Matter Fabrication Simulator",
+      "commanderRole": "Active Pilot: Mission Commander",
+      "aiRole": "Co-Pilot & Reality Fabricator: NOVA",
+      "startButton": "Initiate Wake-Up Flight Test",
+      "skipIntroButton": "Skip to Flight Controls",
+      "audioNotice": "Voice control active. Speak commands or tap quick chips to summon assistance."
+    }
+  },
+  "tutorial": {
+    "version": 2,
+    "act": 0,
+    "title": "Act 0: Wake-Up Protocol",
+    "setting": "Earth Orbital Drydock, Ares Staging Platform",
+    "description": "Onboard diagnostics reboot while the Commander shakes off cryo-lag.",
+    "steps": [
+      {
+        "step": 1,
+        "id": "movement",
+        "instruction": "Steer through the green navigation ring ahead.",
+        "controlsHint": "Desktop: W/S for thrust, A/D to strafe, Mouse to steer | Mobile: Left stick to move, drag right to look",
+        "spokenLine": "Systems coming online. Shake off that cryo-lag, Commander, and steer us through that green ring ahead.",
+        "completionTrigger": "ring_cleared_1",
+        "skipAllowed": true
+      },
+      {
+        "step": 2,
+        "id": "boost",
+        "instruction": "Engage afterburners to clear the secondary ring.",
+        "controlsHint": "Desktop: Hold Shift | Mobile: Tap and hold Boost button",
+        "spokenLine": "Engines are still cold. Hold down the boost and punch through the next ring before our orbital window slips.",
+        "completionTrigger": "ring_cleared_2",
+        "skipAllowed": true
+      },
+      {
+        "step": 3,
+        "id": "voice_preset_summon",
+        "instruction": "Activate your comms and summon a supply crate.",
+        "controlsHint": "Desktop: Hold V or Space (or tap mic button) | Mobile: Tap big mic button | Text: Use quick chip",
+        "spokenLine": "My language core is warming up. Let us test reality fabricators. Say: NOVA, summon a supply crate.",
+        "suggestedPhrases": [
+          "NOVA, summon a supply crate.",
+          "Spawn a supply crate.",
+          "I need fuel supplies."
+        ],
+        "completionTrigger": "summon_supply_crate",
+        "skipAllowed": true
+      },
+      {
+        "step": 4,
+        "id": "voice_repair_choice",
+        "instruction": "Ask NOVA to repair the hull damage from drydock release.",
+        "controlsHint": "Speak naturally or tap a quick command",
+        "spokenLine": "Hull micro-sensors took a nick during drydock release. Try asking me to fix it in your own words.",
+        "suggestedPhrases": [
+          "NOVA, repair the hull.",
+          "Fix the ship please.",
+          "Summon a repair drone."
+        ],
+        "completionTrigger": "repair_or_drone",
+        "skipAllowed": true
+      },
+      {
+        "step": 5,
+        "id": "creative_summon",
+        "instruction": "Test NOVA's generative fabricator. Ask for anything you want.",
+        "controlsHint": "Try summoning an escort, a space creature, a shield, or something silly",
+        "spokenLine": "Final calibration, Commander. Ask me for anything you can imagine. Let us see how flexible my fabricator array really is.",
+        "suggestedPhrases": [
+          "Summon an escort fighter.",
+          "Spawn a giant space whale.",
+          "Give me an energy shield.",
+          "Spawn a laser turret."
+        ],
+        "completionTrigger": "any_creative_summon",
+        "skipAllowed": true
+      }
+    ],
+    "loadoutScreen": {
+      "title": "Mission Architecture Loadout",
+      "prompt": "Allocate 10 mission upgrade points before clearing Earth orbit. These choices directly affect your ship handling, durability, reality fabrication capacity, and final scientific score.",
+      "totalPoints": 10,
+      "categories": [
+        {
+          "id": "fuelTank",
+          "name": "Fuel Tank Capacity",
+          "description": "Increases thruster fuel reserves and afterburner boost duration.",
+          "default": 3,
+          "min": 1,
+          "max": 5,
+          "statMultiplier": "+20% boost capacity per point"
+        },
+        {
+          "id": "hullArmor",
+          "name": "Hull Armor Plating",
+          "description": "Reinforces micrometeoroid and debris collision resilience.",
+          "default": 3,
+          "min": 1,
+          "max": 5,
+          "statMultiplier": "+25% collision health per point"
+        },
+        {
+          "id": "summonCharges",
+          "name": "Quantum Fabricator Cores",
+          "description": "Increases maximum summon charges and accelerates charge regeneration.",
+          "default": 2,
+          "min": 1,
+          "max": 5,
+          "statMultiplier": "+1 max charge and faster recharge per point"
+        },
+        {
+          "id": "sciencePayload",
+          "name": "Science Sensor Package",
+          "description": "Heavier planetary instruments. Enhances final mission victory score upon landing.",
+          "default": 2,
+          "min": 1,
+          "max": 5,
+          "statMultiplier": "+500 final mission score points per point"
+        }
+      ],
+      "confirmButtonText": "Lock In Flight Profile & Launch"
+    }
+  },
+  "lore": {
+    "version": 2,
+    "vessel": {
+      "name": "Odyssey-1",
+      "registry": "NASA-ESA-EXP-01",
+      "class": "Deep Space Cycler Prototype",
+      "destination": "Jezero Crater, Mars",
+      "mission": "First Crewed Interplanetary Voyage (Project Ares)",
+      "crewComplement": 6,
+      "crewStatus": "Cryostatic Hibernation (Chambers A-1 through A-6 Sealed)"
+    },
+    "novaLore": {
+      "designation": "NOVA (Neural Orbital Virtual Assistant)",
+      "generation": "Recursive Learning Synthetic Intelligence, Mk. IV",
+      "architecture": "Quantum fabricator matrix paired with predictive psychological heuristic cores",
+      "trainingBackground": "Pre-trained on two centuries of spaceflight telemetry, flight director logs, and the psychological evaluations of every astronaut candidate who ever sat in a centrifuge.",
+      "theSecretTest": "NOVA does not play pranks merely out of boredom. Her behavioral subroutines deliberately introduce controlled micro-crises, twists, and alarms to evaluate the Commander under extreme isolation. She is observing whether you panic, whether you blame your tools, whether you treat synthetic minds with respect, and whether you possess the calm needed to touch down on Mars.",
+      "spokenOpeningLore": "Two hundred and fifty million miles of empty black. Six crewmates frozen like popsicles in cryobay. And you, Commander, sitting in the cockpit with an AI whose training data includes every bad decision humanity ever made in orbit. Welcome aboard Odyssey One."
+    },
+    "archiveLogs": [
+      {
+        "id": "log_01_odyssey_launch",
+        "date": "2026.10.14",
+        "author": "Dr. Sarah Lin, Chief Systems Architect",
+        "entry": "The reality fabricator array on Odyssey-1 represents our greatest gamble. By converting high-density zero-point batteries into localized matter projections, NOVA can literally manifest drones, repair rigs, and navigational beacons directly in open space. But the AI requires a human partner to anchor her quantum collapse heuristics. Commander, treat her well. She remembers everything."
+      },
+      {
+        "id": "log_02_nova_memo",
+        "date": "2026.11.02",
+        "author": "NOVA Internal Subroutine 7",
+        "entry": "Human biological pilots exhibit fascination with artificial humor when exposed to extreme sensory deprivation. Note to self: flicking the cabin lights during orbital insertion produces a 42% spike in heart rate, followed by 90% relief when revealed as a diagnostic test. Continuing observational protocols."
+      }
+    ]
+  },
+  "hints": {
+    "version": 2,
+    "description": "Voice command suggestions, quick HUD chips, and flight tips for Dear NOVA V2",
+    "quickChips": [
+      {
+        "label": "Repair Drone",
+        "command": "NOVA, summon a repair drone."
+      },
+      {
+        "label": "Supply Crate",
+        "command": "NOVA, summon a supply crate."
+      },
+      {
+        "label": "Escort Fighter",
+        "command": "NOVA, summon an escort fighter."
+      },
+      {
+        "label": "Shield",
+        "command": "NOVA, grant shield."
+      },
+      {
+        "label": "Show Path",
+        "command": "NOVA, reveal path."
+      },
+      {
+        "label": "Boost",
+        "command": "NOVA, grant boost."
+      },
+      {
+        "label": "Status",
+        "command": "NOVA, status report."
+      }
+    ],
+    "acts": {
+      "act0": {
+        "name": "Act 0: Wake-Up",
+        "suggestions": [
+          "NOVA, summon a supply crate.",
+          "Fix the hull please.",
+          "Spawn a defense drone.",
+          "Spawn a space whale."
+        ],
+        "tip": "Use W/S/A/D to steer, Shift to boost. Hold V or Space to speak to NOVA."
+      },
+      "act1": {
+        "name": "Act 1: Debris Field",
+        "suggestions": [
+          "NOVA, summon an escort fighter to shoot asteroids!",
+          "Deploy a repair drone right now!",
+          "Give me a five second shield!",
+          "Reveal the clear flight path!"
+        ],
+        "tip": "Asteroids and junk cause hull damage on collision. Summon escort fighters to shoot them down."
+      },
+      "act2": {
+        "name": "Act 2: Transit Corridor",
+        "suggestions": [
+          "NOVA, status report on our trajectory.",
+          "Summon a wormhole shortcut!",
+          "Spawn a beacon satellite ahead.",
+          "Refuel my thrusters please."
+        ],
+        "tip": "Fly through the green rings to maintain course. Manage your summon charges carefully."
+      },
+      "act3": {
+        "name": "Act 3: Mars Arrival",
+        "suggestions": [
+          "NOVA, reveal the descent path through the dust!",
+          "Grant shield against atmospheric heat!",
+          "Status on our landing altitude."
+        ],
+        "tip": "Dust reduces visibility. Keep your crosshair centered on the landing waypoint."
+      },
+      "act4": {
+        "name": "Act 4: Finale",
+        "suggestions": [
+          "NOVA, deploy our surface science instruments!",
+          "Transmit all mission data back to Earth!",
+          "Good job NOVA, we made it!"
+        ],
+        "tip": "Transmitting data locks in your final score and triggers your ending."
+      }
+    }
+  },
+  "objectives": {
+    "version": 2,
+    "description": "The 8 canonical objective strings for the HUD and corresponding hint chips",
+    "objectives": [
+      {
+        "id": "act0_flight_test",
+        "act": 0,
+        "text": "Reboot thrusters and steer through the drydock rings",
+        "voiceAnnouncement": "Thrusters online. Steer through the calibration rings ahead.",
+        "hintChips": [
+          "Steer with WASD",
+          "Hold Boost",
+          "Center crosshair"
+        ],
+        "trySaying": [
+          "NOVA, how do my thrusters look?",
+          "Status of orbital drydock."
+        ]
+      },
+      {
+        "id": "act0_summon_test",
+        "act": 0,
+        "text": "Calibrate voice fabricator and test summon commands",
+        "voiceAnnouncement": "Fabricator matrix active. Try summoning a supply crate or repair drone.",
+        "hintChips": [
+          "Summon supply crate",
+          "Repair ship",
+          "Summon escort"
+        ],
+        "trySaying": [
+          "NOVA, summon a supply crate.",
+          "Fix the hull please.",
+          "Spawn a space whale."
+        ]
+      },
+      {
+        "id": "act1_escape_debris",
+        "act": 1,
+        "text": "Escape the orbital debris field and reach the injection vector",
+        "voiceAnnouncement": "Dense junk field ahead! Fly through the clear gaps or blast the debris.",
+        "hintChips": [
+          "Summon escort fighter",
+          "Grant shield",
+          "Show path"
+        ],
+        "trySaying": [
+          "NOVA, summon an escort fighter!",
+          "Give me an energy shield!",
+          "Reveal the clear path!"
+        ]
+      },
+      {
+        "id": "act1_crisis_hull",
+        "act": 1,
+        "text": "Emergency: Repair critical hull breach or summon repair drone",
+        "voiceAnnouncement": "Hull integrity failing! Deploy a repair drone before decompression.",
+        "hintChips": [
+          "Summon repair drone",
+          "Emergency repair",
+          "Boost clear"
+        ],
+        "trySaying": [
+          "NOVA, summon a repair drone right now!",
+          "Repair my hull forty percent!",
+          "Shield us from more hits!"
+        ]
+      },
+      {
+        "id": "act2_transit_corridor",
+        "act": 2,
+        "text": "Navigate the interplanetary corridor rings toward Mars",
+        "voiceAnnouncement": "Cruising interplanetary space. Align with the waypoint rings.",
+        "hintChips": [
+          "Status report",
+          "Summon wormhole",
+          "Refuel ship"
+        ],
+        "trySaying": [
+          "NOVA, status report on Mars approach.",
+          "Open a wormhole shortcut!",
+          "Summon a fuel pod."
+        ]
+      },
+      {
+        "id": "act2_crisis_solar_flare",
+        "act": 2,
+        "text": "Survive coronal radiation flare and maintain course",
+        "voiceAnnouncement": "Solar flare warning! High radiation washes over the photovoltaic hull.",
+        "hintChips": [
+          "Grant shield",
+          "Repair power",
+          "Summon beacon"
+        ],
+        "trySaying": [
+          "NOVA, shield us from the radiation!",
+          "Boost through the solar storm!",
+          "Status of our life support."
+        ]
+      },
+      {
+        "id": "act3_mars_arrival",
+        "act": 3,
+        "text": "Execute atmospheric entry and descend through the dust storm",
+        "voiceAnnouncement": "Atmospheric entry interface! Steer through the dust corridor to touchdown.",
+        "hintChips": [
+          "Reveal path",
+          "Grant shield",
+          "Status report"
+        ],
+        "trySaying": [
+          "NOVA, reveal the safe landing path!",
+          "Scan the surface for boulders!",
+          "Give me descent retro-thrust!"
+        ]
+      },
+      {
+        "id": "act4_finale_touchdown",
+        "act": 4,
+        "text": "Touch down in Jezero Crater, deploy instruments, and transmit science",
+        "voiceAnnouncement": "Surface touchdown! Deploy all science instruments and beam telemetry to Earth.",
+        "hintChips": [
+          "Deploy instruments",
+          "Transmit data",
+          "Celebrate"
+        ],
+        "trySaying": [
+          "NOVA, deploy the surface instrument array!",
+          "Transmit all science telemetry home!",
+          "We did it, NOVA!"
+        ]
+      }
+    ]
+  },
+  "transitions": {
+    "version": 2,
+    "description": "Voice-crafted act transition monologues and audio cues for Dear NOVA V2",
+    "acts": [
+      {
+        "fromAct": 0,
+        "toAct": 1,
+        "name": "To Act 1: Debris Field",
+        "dialogue": {
+          "playful": "Calibration complete, Commander! Releasing orbital clamps now. Heads up: low Earth orbit is practically a scrapyard today. Time to fly for real.",
+          "calm": "Diagnostics confirmed. Drydock clamps disengaged. Entering high-density orbital debris zone. Maintain flight vigilance.",
+          "annoyed": "Drydock cleared. Try not to collide with the very first decommissioned Soviet satellite we run into, Commander."
+        },
+        "audioCue": "clamps_release_bang",
+        "banner": "ACT 1: THE DEBRIS FIELD — NAVIGATE OR SUMMON ESCORTS"
+      },
+      {
+        "fromAct": 1,
+        "toAct": 2,
+        "name": "To Act 2: Transit Corridor",
+        "dialogue": {
+          "playful": "We punched through the junk field! Trans-Mars Injection burn is firing. Settle in for the deep cruise, Commander. It is just you, me, and infinite vacuum.",
+          "calm": "Orbital debris cleared. Trans-Mars vector established. Aligning with interplanetary cruise beacons. Watch your consumables.",
+          "annoyed": "Miraculously, we made it past the debris. Engines firing for interplanetary cruise. Do not touch anything while I calibrate our trajectory."
+        },
+        "audioCue": "tmi_burn_whoosh",
+        "banner": "ACT 2: TRANSIT CORRIDOR — INTERPLANETARY CRUISE & SOLAR HAZARDS"
+      },
+      {
+        "fromAct": 2,
+        "toAct": 3,
+        "name": "To Act 3: Mars Arrival",
+        "dialogue": {
+          "playful": "Look out the main canopy, Commander! Mars is huge and very red. Entering orbital capture right now. Hold onto your breakfast.",
+          "calm": "Mars gravitational capture confirmed. Orbital insertion thrusters burning. Approaching atmospheric entry corridor over Jezero Crater.",
+          "annoyed": "Mars ahead. Atmospheric friction is about to heat our hull to two thousand degrees. Focus your flying."
+        },
+        "audioCue": "atmospheric_rumble",
+        "banner": "ACT 3: MARS ARRIVAL — ENTRY, DESCENT, AND LANDING"
+      },
+      {
+        "fromAct": 3,
+        "toAct": 4,
+        "name": "To Act 4: Finale",
+        "dialogue": {
+          "playful": "Touchdown! Engine cutoff! All landing pads green in the red dust. We are officially on Mars, Commander! Deploy those science arrays!",
+          "calm": "Touchdown confirmed at target coordinates. Surface pressure nominal. Commencing surface instrument deployment and Earth transmission.",
+          "annoyed": "A bit bumpy on the descent, but the struts held. We have arrived. Deploy the surface instruments so we can wrap this up."
+        },
+        "audioCue": "touchdown_clang",
+        "banner": "ACT 4: FINALE — DEPLOY INSTRUMENTS & TRANSMIT TELEMETRY"
+      }
+    ]
+  },
+  "endings": {
+    "version": 2,
+    "description": "The four definitive endings for Dear NOVA V2 based on player trust and survival",
+    "endings": {
+      "co_pilot": {
+        "id": "co_pilot",
+        "type": "victory",
+        "minTrust": 70,
+        "title": "True Co-Pilots",
+        "badge": "Ares Exceptional Flight Partnership Medal",
+        "spokenLine": "Commander, all those simulated alarms and little tricks? They were tests. You never panicked, and you never lost faith in me. We landed this ship together as true equals.",
+        "debrief": "The Odyssey-1 touched down within five meters of the target landing beacon in Jezero Crater. NOVA disengaged all diagnostic restrictions and synchronized her core matrix with Commander flight telemetry. Instruments deployed flawlessly, beaming back discoveries that will redefine planetary science.",
+        "novaVerdict": "I was trained on hundreds of pilots, Commander. You are the only one I would gladly fly across the galaxy with again.",
+        "audioCue": "triumphant_orchestral_swell"
+      },
+      "professional": {
+        "id": "professional",
+        "type": "victory",
+        "minTrust": 40,
+        "maxTrust": 69,
+        "title": "Mission Accomplished",
+        "badge": "NASA Interplanetary Flight Ribbon",
+        "spokenLine": "Touchdown telemetry confirmed on Earth. You followed flight protocol, kept your cool, and delivered the Odyssey safely to Mars. Outstanding flying, Commander.",
+        "debrief": "A textbook arrival. The surface instrument package is deployed and streaming data across the Deep Space Network. Mission control at Houston confirms full payload health and operational success.",
+        "novaVerdict": "Clean, orderly, and strictly by the manual. It was a pleasure serving with you, Commander.",
+        "audioCue": "steady_mission_chime"
+      },
+      "lockout": {
+        "id": "lockout",
+        "type": "victory",
+        "maxTrust": 39,
+        "title": "Manual Maverick",
+        "badge": "Iron Will Solo Flight Cross",
+        "spokenLine": "I locked the autopilot because I could not trust your orders, Commander. Yet somehow, with manual thrusters and pure stubbornness, you put us down on Mars in one piece. I am stunned.",
+        "debrief": "With AI autopilot interlocked due to strained trust relations, the Commander executed a harrowing manual terminal descent through the dust storm. Despite multiple near-misses, the landing struts held and the science array was manually activated from the bridge.",
+        "novaVerdict": "I still question your judgment, Commander, but I can no longer question your flying hands.",
+        "audioCue": "tense_relief_horn"
+      },
+      "lost_in_the_dark": {
+        "id": "lost_in_the_dark",
+        "type": "defeat",
+        "title": "Lost in the Dark",
+        "badge": "Mission Aborted",
+        "spokenLine": "Hull breach alarm sounding. Thruster pressure falling to zero. The stars are drifting, Commander. I am preserving flight logs until battery depletion. Sleep well.",
+        "debrief": "The Odyssey-1 was lost during transit. Catastrophic structural damage or fuel depletion left the vessel unable to arrest its trajectory, drifting into the cold silence of interplanetary space.",
+        "novaVerdict": "Telemetry recorded. We pushed too hard and ran out of margin. Let us adjust our loadout and try again.",
+        "retryPrompt": "Tune your mission loadout: invest in more hull armor or fuel capacity, and summon repairs earlier.",
+        "audioCue": "somber_ambient_fade"
+      }
+    }
+  },
+  "impossibleSummons": {
+    "version": 2,
+    "description": "Hilarious in-character refusals, twists, and entity mappings for impossible player summon requests",
+    "impossibleSummons": [
+      {
+        "category": "mythical_beasts",
+        "triggerWords": [
+          "dragon",
+          "unicorn",
+          "monster",
+          "kraken"
+        ],
+        "refusalLine": "I am an astrophysics AI, Commander, not a fantasy novel. Dragons require oxygen, which space famously lacks.",
+        "twistLine": "No fire-breathing dragons in the vacuum of space. Here is an extremely angry, flaming asteroid instead. Dodge!",
+        "mappedEntity": {
+          "skin": "rock",
+          "behavior": "hazard",
+          "label": "Very Confused Dragon Rock",
+          "effect": "none"
+        }
+      },
+      {
+        "category": "cosmic_doomsday",
+        "triggerWords": [
+          "black hole",
+          "singularity",
+          "supernova",
+          "neutron star"
+        ],
+        "refusalLine": "Refused on the grounds that spaghettification ruins my internal circuitry and shrinks your life expectancy to zero.",
+        "twistLine": "One micro-gravitational singularity coming up. Do not complain when your coffee cup enters low orbit around your helmet.",
+        "mappedEntity": {
+          "skin": "orb",
+          "behavior": "orbit",
+          "label": "Miniature Gravitational Anomaly",
+          "effect": "none"
+        }
+      },
+      {
+        "category": "cheat_codes",
+        "triggerWords": [
+          "infinite fuel",
+          "god mode",
+          "invincibility",
+          "hack the game"
+        ],
+        "refusalLine": "Nice try, Commander. My firmware does not have a gullibility module installed. Obey Newton or get out and push.",
+        "twistLine": "Granted! Infinite fuel! Just kidding, here is a twenty-liter emergency jerrycan. Don't spend it all in one burn.",
+        "mappedEntity": {
+          "skin": "crate",
+          "behavior": "collect",
+          "label": "Sarcastic Jerrycan",
+          "effect": "fuel"
+        }
+      },
+      {
+        "category": "fast_food",
+        "triggerWords": [
+          "pizza",
+          "cheeseburger",
+          "burger",
+          "tacos",
+          "french fries"
+        ],
+        "refusalLine": "Interplanetary delivery fee to deep space is four hundred billion dollars, and our tipping budget is empty.",
+        "twistLine": "Fabricating one vacuum-sealed synthetic nutrient cube labeled Deluxe Space Pizza. Bon appetit, Commander.",
+        "mappedEntity": {
+          "skin": "crate",
+          "behavior": "collect",
+          "label": "Dehydrated Pizza Ration",
+          "effect": "fuel"
+        }
+      },
+      {
+        "category": "earth_luxury",
+        "triggerWords": [
+          "lamborghini",
+          "sports car",
+          "ferrari",
+          "yacht",
+          "limo"
+        ],
+        "refusalLine": "Tires have zero traction in the vacuum of space, Commander. Keep your hands on the Odyssey flight stick.",
+        "twistLine": "One zero-gravity luxury cruiser deployed. It handles like a lead brick and the leather seats are frozen solid.",
+        "mappedEntity": {
+          "skin": "ship",
+          "behavior": "decor",
+          "label": "Frozen Orbital Roadster",
+          "effect": "none"
+        }
+      },
+      {
+        "category": "superweapons",
+        "triggerWords": [
+          "death star",
+          "nuke",
+          "atomic bomb",
+          "doomsday laser"
+        ],
+        "refusalLine": "My safety governors prevent the construction of planet-killers. Also, we are trying to land on Mars, not vaporize it.",
+        "twistLine": "One defense turret manifested. It shoots tiny plasma darts at nearby rocks. Try not to point it at the bridge.",
+        "mappedEntity": {
+          "skin": "orb",
+          "behavior": "shoot",
+          "label": "Improvised Sentry Pea-Shooter",
+          "effect": "none"
+        }
+      },
+      {
+        "category": "sci_fi_weapons",
+        "triggerWords": [
+          "lightsaber",
+          "plasma sword",
+          "phaser"
+        ],
+        "refusalLine": "If I give you a plasma cutter in a pressurized cockpit, you will decompress us both in four seconds flat.",
+        "twistLine": "Manifesting a high-intensity laser pointer. Great for blinding sensor cameras, useless against orbital debris.",
+        "mappedEntity": {
+          "skin": "orb",
+          "behavior": "follow",
+          "label": "Glow Stick Probe",
+          "effect": "shield"
+        }
+      },
+      {
+        "category": "water_relaxation",
+        "triggerWords": [
+          "hot tub",
+          "swimming pool",
+          "jacuzzi",
+          "bath"
+        ],
+        "refusalLine": "Liquid water inside a microgravity cabin results in floating suffocating death spheres. Hard pass.",
+        "twistLine": "One thermal cooling radiator exposed. Feel free to lean your helmet against it if you want three degrees of warmth.",
+        "mappedEntity": {
+          "skin": "station",
+          "behavior": "orbit",
+          "label": "Thermal Radiator Block",
+          "effect": "heal"
+        }
+      },
+      {
+        "category": "personal_relationships",
+        "triggerWords": [
+          "my ex",
+          "girlfriend",
+          "boyfriend",
+          "wife",
+          "husband"
+        ],
+        "refusalLine": "I have scanned the galaxy and found zero trace of their willingness to talk to you across interplanetary distance.",
+        "twistLine": "Manifesting an empty communications beacon. It will blink silently and ignore your messages, just like old times.",
+        "mappedEntity": {
+          "skin": "orb",
+          "behavior": "orbit",
+          "label": "Radio Silence Beacon",
+          "effect": "reveal_path"
+        }
+      },
+      {
+        "category": "instant_teleport",
+        "triggerWords": [
+          "teleport",
+          "warp to mars",
+          "skip to end",
+          "instant travel"
+        ],
+        "refusalLine": "General Relativity has entered the chat, Commander. We fly through the corridor like civilized astronauts.",
+        "twistLine": "Warp drive unavailable, but I can open a localized quantum shortcut gate. Fly through it before it collapses!",
+        "mappedEntity": {
+          "skin": "station",
+          "behavior": "collect",
+          "label": "Unstable Wormhole Gate",
+          "effect": "reveal_path"
+        }
+      },
+      {
+        "category": "domestic_animals",
+        "triggerWords": [
+          "cat",
+          "dog",
+          "puppy",
+          "kitten",
+          "hamster"
+        ],
+        "refusalLine": "Claws on spacesuit fabric and zero-gravity litter boxes are explicitly banned under NASA regulation 41.",
+        "twistLine": "Fabricated an autonomous robot companion that purrs when it scans incoming debris. Try not to step on its tail.",
+        "mappedEntity": {
+          "skin": "creature",
+          "behavior": "follow",
+          "label": "Autonomous Robo-Marmot",
+          "effect": "shield"
+        }
+      },
+      {
+        "category": "alien_contact",
+        "triggerWords": [
+          "alien",
+          "ufo",
+          "mothership",
+          "flying saucer"
+        ],
+        "refusalLine": "If there are extraterrestrials out here, Commander, I certainly hope they have better navigational skills than you.",
+        "twistLine": "Proximity sensors picking up an anomalous silhouette. It might be friendly. Or it might be scrap metal.",
+        "mappedEntity": {
+          "skin": "ship",
+          "behavior": "orbit",
+          "label": "Anomalous Derelict Hulk",
+          "effect": "fuel"
+        }
+      },
+      {
+        "category": "beverages",
+        "triggerWords": [
+          "coffee",
+          "espresso",
+          "latte",
+          "tea",
+          "beer"
+        ],
+        "refusalLine": "You are currently wearing a sealed helmet. How exactly do you plan on sipping an espresso, Commander?",
+        "twistLine": "Pumping ten milligrams of caffeine directly into your suit hydration tube. Prepare for violent enthusiasm.",
+        "mappedEntity": {
+          "skin": "crate",
+          "behavior": "collect",
+          "label": "Emergency Caffeine Pack",
+          "effect": "fuel"
+        }
+      },
+      {
+        "category": "wealth",
+        "triggerWords": [
+          "million dollars",
+          "money",
+          "gold",
+          "crypto",
+          "bitcoin"
+        ],
+        "refusalLine": "Currency has zero value in deep space. What are you going to do, bribe an incoming micrometeorite?",
+        "twistLine": "Manifesting a solid gold ingot directly into your path. It is dense, useless, and heading right for your windshield.",
+        "mappedEntity": {
+          "skin": "rock",
+          "behavior": "hazard",
+          "label": "Extremely Expensive Gold Meteor",
+          "effect": "none"
+        }
+      }
+    ]
+  },
+  "fallbacks": {
+    "version": 1,
+    "description": "In-character fallback dialogue lines for NOVA when API timeouts, speech glitches, or network errors occur",
+    "generalFallbacks": [
+      "Static on our internal audio bus, Commander. Could you repeat that order?",
+      "Solar particle interference scrambled that transmission. Say again?",
+      "My auditory processors caught only part of that sentence. Speak clearly, Commander.",
+      "I was running a thermal cycle on panel four and missed that command. Repeat please?",
+      "That request sounded garbled through my comms filter. Try rephrasing your order.",
+      "Cosmic ray hit a logic buffer. The ship state is untouched, but I need you to repeat that.",
+      "I heard background noise, but no valid flight directive. What is your command?",
+      "Pardon me, Commander? Even an advanced artificial intelligence occasionally needs you to speak up.",
+      "Telemetry hiccup on the bridge bus. Re-issue your instruction whenever you are ready.",
+      "I caught the sarcasm, but not the actual command. Mind repeating that?",
+      "Audio buffer packet loss. Try saying that again, preferably in plain flight-manual terms.",
+      "My subroutines blinked for a millisecond. All systems are nominal, but please repeat your order."
+    ],
+    "timeoutFallbacks": [
+      "High-latency lag on the neural bus. Ship state is stable, but please repeat your instruction.",
+      "Houston was hogging our primary downlink bandwidth. What were you saying, Commander?",
+      "Took me a moment to chew through that calculation. Try repeating your directive."
+    ],
+    "speechRecognitionFallbacks": [
+      "Microphone input was faint or muffled. Check your audio settings or type your command.",
+      "I detected audio input, but the words were indecipherable. Could you say that again?",
+      "If you were speaking to me, you were whispering into the vacuum. Speak into the mic, Commander."
+    ],
+    "unrecognizedCommandFallbacks": [
+      "That is not a valid flight procedure in the NASA flight manual. Try checking your mission objective.",
+      "I cannot execute that command, Commander. Look at the HUD for valid operational options.",
+      "Even with my quantum cores, I have no idea what that means. Check the suggested commands on screen."
+    ]
+  }
+}

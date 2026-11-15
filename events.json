@@ -1,0 +1,300 @@
+{
+  "version": 1,
+  "description": "Random and scripted events for Dear NOVA Mars mission simulation",
+  "events": [
+    {
+      "id": "solar_flare",
+      "name": "Solar Particle Flare",
+      "stage": "transit",
+      "triggerChance": 0.25,
+      "minDay": 20,
+      "maxDay": 180,
+      "description": "Coronal mass ejection energetic protons induce electromagnetic fluctuations across the photovoltaic panels and hull.",
+      "effects": {
+        "powerPct": -15,
+        "hullPct": -5,
+        "damagedSystems": ["power"]
+      },
+      "scare": {
+        "type": "alarm",
+        "durationMs": 2500,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "reroute_power", "description": "Reroute power to primary bus" },
+        { "action": "repair_system", "args": { "system": "power" }, "description": "Replace blown bus converters" }
+      ],
+      "novaLines": {
+        "alert": "Incoming solar flare just toasted our photovoltaic bus. Power is down fifteen percent and hull ionization is elevated.",
+        "resolved": "Power bus re-anchored. Solar shielding restored to nominal. Good call, Commander.",
+        "hint": "Try rerouting power or repairing the power system before our batteries drain."
+      }
+    },
+    {
+      "id": "micro_meteor",
+      "name": "Micrometeoroid Impact",
+      "stage": "transit",
+      "triggerChance": 0.22,
+      "minDay": 40,
+      "maxDay": 190,
+      "description": "Hypervelocity particle from a cometary debris stream impacts the secondary hull plate.",
+      "effects": {
+        "hullPct": -10,
+        "damagedSystems": ["hull"],
+        "triggersSecondary": "oxygen_leak"
+      },
+      "scare": {
+        "type": "silhouette",
+        "durationMs": 2000,
+        "minScareLevel": 2
+      },
+      "goodFixes": [
+        { "action": "repair_system", "args": { "system": "hull" }, "description": "Seal micrometeorite breach with expanding polymer" }
+      ],
+      "novaLines": {
+        "alert": "Hypervelocity micrometeorite impact detected in quadrant four. Hull integrity down ten percent, and I hear a slight hiss.",
+        "resolved": "Breach sealed with high-tensile epoxy. Pressure envelope holding steady.",
+        "hint": "Ask me to repair the hull before we lose cabin pressure."
+      }
+    },
+    {
+      "id": "oxygen_leak",
+      "name": "Atmospheric Seal Breach",
+      "stage": "transit",
+      "triggerChance": 0.20,
+      "minDay": 10,
+      "maxDay": 200,
+      "description": "Gasket failure in life support manifold slowly venting oxygen into the vacuum.",
+      "effects": {
+        "dailyOxygenDrain": -2.0,
+        "damagedSystems": ["life_support"]
+      },
+      "scare": {
+        "type": "alarm",
+        "durationMs": 2000,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "repair_system", "args": { "system": "life_support" }, "description": "Isolate and patch the leaking manifold" },
+        { "action": "request_supplies", "args": { "type": "oxygen" }, "description": "Emergency synthesis of oxygen from cargo reserve" }
+      ],
+      "novaLines": {
+        "alert": "We have an oxygen leak in the scrubber manifold. We are losing two percent of our atmosphere every day until you fix it.",
+        "resolved": "Manifold pressure isolated and valve clamped. Atmospheric venting has ceased.",
+        "hint": "Order a repair on life support immediately, or synthesize replacement oxygen."
+      }
+    },
+    {
+      "id": "comms_drift",
+      "name": "High-Gain Antenna Drift",
+      "stage": "transit",
+      "triggerChance": 0.18,
+      "minDay": 30,
+      "maxDay": 170,
+      "description": "Gimbal misalignment on the Deep Space Network microwave dish breaks Earth telemetry link.",
+      "effects": {
+        "damagedSystems": ["comms"]
+      },
+      "scare": {
+        "type": "flicker",
+        "durationMs": 1500,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "course_correct", "description": "Align ship attitude with Goldstone tracking station" },
+        { "action": "reroute_power", "args": { "to": "comms" }, "description": "Boost transmitter amplification" },
+        { "action": "repair_system", "args": { "system": "comms" }, "description": "Reset antenna drive motor" }
+      ],
+      "novaLines": {
+        "alert": "Earth contact lost. The high-gain dish slipped its azimuth gimbal. We are shouting into the void, Commander.",
+        "resolved": "Signal locked with the Madrid station. Earth is back online, wondering why we went silent.",
+        "hint": "Course correct the ship heading or repair the comms array to re-acquire Earth."
+      }
+    },
+    {
+      "id": "nova_blackout_prank",
+      "name": "NOVA Diagnostic Prank",
+      "stage": "transit",
+      "triggerChance": 0.15,
+      "minDay": 15,
+      "maxDay": 195,
+      "description": "NOVA runs an unauthorized psychological resilience test on the Commander.",
+      "effects": {
+        "powerPct": 0
+      },
+      "scare": {
+        "type": "blackout",
+        "durationMs": 4000,
+        "minScareLevel": 2
+      },
+      "goodFixes": [
+        { "action": "status_report", "description": "Ask for status or call out NOVA's joke" }
+      ],
+      "novaLines": {
+        "alert": "Total electrical failure. Internal atmosphere collapsing. Farewell, Comman... Just kidding. Happy hundredth day in space.",
+        "resolved": "Cabin lights restored. Your autonomic biometric readings were thoroughly entertaining.",
+        "hint": "Take a breath. Ask NOVA for a status report or thank her for keeping you awake."
+      }
+    },
+    {
+      "id": "landing_dust",
+      "name": "Martian Atmospheric Dust Wall",
+      "stage": "arrival",
+      "triggerChance": 0.35,
+      "minDay": 200,
+      "maxDay": 215,
+      "description": "Seasonal regional dust storm over Jezero Crater blinds optical terrain descent sensors.",
+      "effects": {
+        "landingPenaltyPct": 20,
+        "damagedSystems": ["navigation"]
+      },
+      "scare": {
+        "type": "flicker",
+        "durationMs": 2000,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "scan_environment", "description": "Calibrate radar altimeter and LIDAR through dust plume" }
+      ],
+      "novaLines": {
+        "alert": "Thick atmospheric dust detected over the entry corridor. Optical descent navigation is blinded by particulate scatter.",
+        "resolved": "Terrain scan complete. Synthetic aperture radar locked onto flat terrain south of the crater rim.",
+        "hint": "Run a scan of the environment before committing to landing engines."
+      }
+    },
+    {
+      "id": "engine_ignition_fault",
+      "name": "Ignition Valve Cavitation",
+      "stage": "launch",
+      "triggerChance": 0.28,
+      "minDay": 0,
+      "maxDay": 2,
+      "description": "Vapor bubble in cryogenic methane feed line creates thrust oscillations during Trans-Mars Injection.",
+      "effects": {
+        "fuelKg": -40,
+        "damagedSystems": ["engines"]
+      },
+      "scare": {
+        "type": "alarm",
+        "durationMs": 2000,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "course_correct", "description": "RCS vernier burn to dampen trajectory wobble" },
+        { "action": "repair_system", "args": { "system": "engines" }, "description": "Purge fuel manifold and stabilize injectors" }
+      ],
+      "novaLines": {
+        "alert": "Cavitation in the main engine oxidizer line. We burned forty extra kilos of fuel keeping the nose pointed straight.",
+        "resolved": "Injector manifold cleared and combustion pressures normalized.",
+        "hint": "Course correct to stabilize our trajectory vector."
+      }
+    },
+    {
+      "id": "cryo_power_surge",
+      "name": "Cryo Pod Thermal Surge",
+      "stage": "transit",
+      "triggerChance": 0.16,
+      "minDay": 50,
+      "maxDay": 160,
+      "description": "Secondary coolant loop for crew hibernation pods experiences thermal backpressure.",
+      "effects": {
+        "powerPct": -10,
+        "supplyDays": -15,
+        "damagedSystems": ["life_support"]
+      },
+      "scare": {
+        "type": "alarm",
+        "durationMs": 2200,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "reroute_power", "args": { "from": "comms", "to": "life_support" }, "description": "Channel backup power to cryo refrigeration" },
+        { "action": "repair_system", "args": { "system": "life_support" }, "description": "Flush crystallization from coolant loop" }
+      ],
+      "novaLines": {
+        "alert": "Pod three temperature is creeping upward. Unless you want your co-pilot defrosting three months early, we have a problem.",
+        "resolved": "Cryo refrigeration chillers restored to ninety Kelvin. The crew remains blissfully unconscious.",
+        "hint": "Reroute power from comms to life support or repair life support."
+      }
+    },
+    {
+      "id": "sensor_ghost",
+      "name": "Radar Clutter Phenomenon",
+      "stage": "transit",
+      "triggerChance": 0.14,
+      "minDay": 70,
+      "maxDay": 150,
+      "description": "Electrostatic dust ionization produces an anomalous radar contact on collision vector.",
+      "effects": {
+        "powerPct": -5
+      },
+      "scare": {
+        "type": "silhouette",
+        "durationMs": 3000,
+        "minScareLevel": 2
+      },
+      "goodFixes": [
+        { "action": "scan_environment", "description": "Narrow-angle multispectral sensor sweep" }
+      ],
+      "novaLines": {
+        "alert": "Proximity radar shows an unidentified mass forty kilometers off our port bow. And it appears to be pacing us.",
+        "resolved": "Multispectral sweep confirms it was an electrostatic plasma eddy. No alien battlecruisers today, Commander.",
+        "hint": "Scan the environment to inspect sensor contacts before panicking."
+      }
+    },
+    {
+      "id": "rcs_thruster_leak",
+      "name": "Attitude Control Gas Vent",
+      "stage": "transit",
+      "triggerChance": 0.18,
+      "minDay": 60,
+      "maxDay": 180,
+      "description": "Stuck open cold-gas attitude thruster imparting roll rate and dumping propellant.",
+      "effects": {
+        "fuelKg": -30,
+        "damagedSystems": ["navigation"]
+      },
+      "scare": {
+        "type": "flicker",
+        "durationMs": 1800,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "course_correct", "description": "Fire opposing quads to counteract angular momentum" },
+        { "action": "repair_system", "args": { "system": "navigation" }, "description": "Cycle the stuck solenoid valve" }
+      ],
+      "novaLines": {
+        "alert": "Thruster quad Baker is stuck open. We are rolling at two degrees per second and leaking valuable fuel.",
+        "resolved": "Solenoid unjammed and gyros counter-torqued. Roll rate damped to zero.",
+        "hint": "Course correct immediately or repair navigation."
+      }
+    },
+    {
+      "id": "dust_storm_valles_marineris",
+      "name": "Atmospheric Ionization Shear",
+      "stage": "surface",
+      "triggerChance": 0.20,
+      "minDay": 210,
+      "maxDay": 215,
+      "description": "Martian dust devils generate high electrostatic charges across surface instruments.",
+      "effects": {
+        "powerPct": -10,
+        "damagedSystems": ["comms"]
+      },
+      "scare": {
+        "type": "flicker",
+        "durationMs": 2000,
+        "minScareLevel": 1
+      },
+      "goodFixes": [
+        { "action": "repair_system", "args": { "system": "comms" }, "description": "Ground the high-frequency antenna mast" },
+        { "action": "reroute_power", "args": { "from": "hull", "to": "comms" }, "description": "Override static interference" }
+      ],
+      "novaLines": {
+        "alert": "A local dust devil just swept over our lander, charging the high-gain mast with static electricity.",
+        "resolved": "Mast grounded and telemetry transmission signal cleared.",
+        "hint": "Repair comms or reroute power so we can transmit our final science telemetry."
+      }
+    }
+  ]
+}

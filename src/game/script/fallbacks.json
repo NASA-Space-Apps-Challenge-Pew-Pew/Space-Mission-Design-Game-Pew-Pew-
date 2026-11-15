@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "description": "In-character fallback dialogue lines for NOVA when API timeouts, speech glitches, or network errors occur",
+  "generalFallbacks": [
+    "Static on our internal audio bus, Commander. Could you repeat that order?",
+    "Solar particle interference scrambled that transmission. Say again?",
+    "My auditory processors caught only part of that sentence. Speak clearly, Commander.",
+    "I was running a thermal cycle on panel four and missed that command. Repeat please?",
+    "That request sounded garbled through my comms filter. Try rephrasing your order.",
+    "Cosmic ray hit a logic buffer. The ship state is untouched, but I need you to repeat that.",
+    "I heard background noise, but no valid flight directive. What is your command?",
+    "Pardon me, Commander? Even an advanced artificial intelligence occasionally needs you to speak up.",
+    "Telemetry hiccup on the bridge bus. Re-issue your instruction whenever you are ready.",
+    "I caught the sarcasm, but not the actual command. Mind repeating that?",
+    "Audio buffer packet loss. Try saying that again, preferably in plain flight-manual terms.",
+    "My subroutines blinked for a millisecond. All systems are nominal, but please repeat your order."
+  ],
+  "timeoutFallbacks": [
+    "High-latency lag on the neural bus. Ship state is stable, but please repeat your instruction.",
+    "Houston was hogging our primary downlink bandwidth. What were you saying, Commander?",
+    "Took me a moment to chew through that calculation. Try repeating your directive."
+  ],
+  "speechRecognitionFallbacks": [
+    "Microphone input was faint or muffled. Check your audio settings or type your command.",
+    "I detected audio input, but the words were indecipherable. Could you say that again?",
+    "If you were speaking to me, you were whispering into the vacuum. Speak into the mic, Commander."
+  ],
+  "unrecognizedCommandFallbacks": [
+    "That is not a valid flight procedure in the NASA flight manual. Try checking your mission objective.",
+    "I cannot execute that command, Commander. Look at the HUD for valid operational options.",
+    "Even with my quantum cores, I have no idea what that means. Check the suggested commands on screen."
+  ]
+}

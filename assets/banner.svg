@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="100%">
+  <defs>
+    <radialGradient id="spaceGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#0f1b3d" />
+      <stop offset="50%" stop-color="#050814" />
+      <stop offset="100%" stop-color="#020308" />
+    </radialGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="45%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+    <linearGradient id="orbitArc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2" />
+      <stop offset="50%" stop-color="#818cf8" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.3" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="coreGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Deep Cosmos Background -->
+  <rect width="1200" height="420" fill="url(#spaceGlow)" />
+
+  <!-- Starfield Clusters -->
+  <g opacity="0.6">
+    <circle cx="80" cy="60" r="1.5" fill="#ffffff" />
+    <circle cx="160" cy="140" r="1" fill="#38bdf8" />
+    <circle cx="280" cy="80" r="2" fill="#ffffff" opacity="0.9" />
+    <circle cx="340" cy="320" r="1.5" fill="#c084fc" />
+    <circle cx="480" cy="50" r="1" fill="#ffffff" />
+    <circle cx="620" cy="90" r="1.5" fill="#38bdf8" />
+    <circle cx="750" cy="340" r="2" fill="#ffffff" />
+    <circle cx="890" cy="70" r="1" fill="#ffffff" />
+    <circle cx="1020" cy="110" r="1.5" fill="#38bdf8" />
+    <circle cx="1120" cy="50" r="2" fill="#c084fc" opacity="0.8" />
+    <circle cx="1140" cy="280" r="1" fill="#ffffff" />
+    <circle cx="180" cy="360" r="1.5" fill="#38bdf8" />
+    <circle cx="980" cy="350" r="1" fill="#ffffff" />
+  </g>
+
+  <!-- Orbital Hohmann Transfer Trajectory Arc (Earth to Mars) -->
+  <path d="M 120 330 Q 600 60 1080 310" fill="none" stroke="url(#orbitArc)" stroke-width="2.5" stroke-dasharray="8 6" filter="url(#softGlow)" />
+
+  <!-- Earth (Origin Anchor) -->
+  <g transform="translate(120, 330)">
+    <circle cx="0" cy="0" r="26" fill="#1e3a8a" opacity="0.4" filter="url(#softGlow)" />
+    <circle cx="0" cy="0" r="18" fill="#2563eb" />
+    <circle cx="-4" cy="-3" r="10" fill="#10b981" opacity="0.7" />
+    <circle cx="0" cy="0" r="18" fill="none" stroke="#60a5fa" stroke-width="1.5" opacity="0.8" />
+    <text x="0" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#93c5fd" font-weight="600" text-anchor="middle" letter-spacing="1.5">EARTH</text>
+  </g>
+
+  <!-- Mars (Destination Anchor) -->
+  <g transform="translate(1080, 310)">
+    <circle cx="0" cy="0" r="24" fill="#881337" opacity="0.4" filter="url(#softGlow)" />
+    <circle cx="0" cy="0" r="15" fill="#e11d48" />
+    <circle cx="3" cy="2" r="8" fill="#fb7185" opacity="0.6" />
+    <circle cx="0" cy="0" r="15" fill="none" stroke="#fda4af" stroke-width="1.5" opacity="0.8" />
+    <text x="0" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#fca5a5" font-weight="600" text-anchor="middle" letter-spacing="1.5">MARS</text>
+  </g>
+
+  <!-- Center Floating NOVA Orb Presence -->
+  <g transform="translate(600, 115)">
+    <!-- Aura Rings -->
+    <circle cx="0" cy="0" r="54" fill="url(#accentGrad)" opacity="0.25" filter="url(#coreGlow)" />
+    <ellipse cx="0" cy="0" rx="64" ry="24" fill="none" stroke="#38bdf8" stroke-width="2" transform="rotate(-22)" opacity="0.7" />
+    <ellipse cx="0" cy="0" rx="64" ry="24" fill="none" stroke="#c084fc" stroke-width="2" transform="rotate(35)" opacity="0.7" />
+    <circle cx="0" cy="0" r="28" fill="url(#accentGrad)" filter="url(#softGlow)" />
+    <circle cx="0" cy="0" r="20" fill="#090d1a" />
+    <circle cx="0" cy="0" r="12" fill="#38bdf8" />
+    <circle cx="-4" cy="-4" r="4" fill="#ffffff" opacity="0.8" />
+  </g>
+
+  <!-- Challenge Category Pill Badge -->
+  <g transform="translate(600, 192)">
+    <rect x="-185" y="-14" width="370" height="28" rx="14" fill="#0f172a" stroke="#334155" stroke-width="1" />
+    <text x="0" y="4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" fill="#38bdf8" font-weight="700" text-anchor="middle" letter-spacing="2">NASA SPACE APPS CHALLENGE 2026</text>
+  </g>
+
+  <!-- Title: DEAR NOVA -->
+  <text x="600" y="265" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Montserrat', sans-serif" font-size="64" font-weight="900" fill="url(#textGrad)" text-anchor="middle" letter-spacing="8" filter="url(#softGlow)">DEAR NOVA</text>
+
+  <!-- Subtitle Tagline -->
+  <text x="600" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" fill="#cbd5e1" font-weight="500" text-anchor="middle" letter-spacing="3">REAL-TIME 3D FLIGHT  ·  VOICE CO-PILOT  ·  SUMMONING SYSTEM</text>
+
+  <!-- Subtle Bottom Border Indicator -->
+  <line x1="200" y1="390" x2="1000" y2="390" stroke="#1e293b" stroke-width="1.5" />
+  <circle cx="600" cy="390" r="3" fill="#38bdf8" filter="url(#softGlow)" />
+</svg>

@@ -1,8 +1,17 @@
-# Node / Frontend
+# Node & Dependencies
+node_modules/
 frontend/node_modules/
+.pnp
+.pnp.js
 frontend/.pnp
 frontend/.pnp.js
+
+# Production output
+dist/
+build/
 frontend/dist/
+.output
+.vite
 
 # Python / Backend
 backend/__pycache__/
@@ -16,14 +25,29 @@ env/
 venv/
 ENV/
 
-# Environment Variables
+# Environment Variables & Secrets
 .env
 .env.local
 .env.*.local
+*.local
 
-# IDE / OS
+# Vercel deployment metadata
+.vercel
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDE & OS
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-*.swp
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

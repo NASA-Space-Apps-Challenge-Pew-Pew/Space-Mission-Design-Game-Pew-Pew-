@@ -1,0 +1,174 @@
+{
+  "version": 2,
+  "description": "Hilarious in-character refusals, twists, and entity mappings for impossible player summon requests",
+  "impossibleSummons": [
+    {
+      "category": "mythical_beasts",
+      "triggerWords": ["dragon", "unicorn", "monster", "kraken"],
+      "refusalLine": "I am an astrophysics AI, Commander, not a fantasy novel. Dragons require oxygen, which space famously lacks.",
+      "twistLine": "No fire-breathing dragons in the vacuum of space. Here is an extremely angry, flaming asteroid instead. Dodge!",
+      "mappedEntity": {
+        "skin": "rock",
+        "behavior": "hazard",
+        "label": "Very Confused Dragon Rock",
+        "effect": "none"
+      }
+    },
+    {
+      "category": "cosmic_doomsday",
+      "triggerWords": ["black hole", "singularity", "supernova", "neutron star"],
+      "refusalLine": "Refused on the grounds that spaghettification ruins my internal circuitry and shrinks your life expectancy to zero.",
+      "twistLine": "One micro-gravitational singularity coming up. Do not complain when your coffee cup enters low orbit around your helmet.",
+      "mappedEntity": {
+        "skin": "orb",
+        "behavior": "orbit",
+        "label": "Miniature Gravitational Anomaly",
+        "effect": "none"
+      }
+    },
+    {
+      "category": "cheat_codes",
+      "triggerWords": ["infinite fuel", "god mode", "invincibility", "hack the game"],
+      "refusalLine": "Nice try, Commander. My firmware does not have a gullibility module installed. Obey Newton or get out and push.",
+      "twistLine": "Granted! Infinite fuel! Just kidding, here is a twenty-liter emergency jerrycan. Don't spend it all in one burn.",
+      "mappedEntity": {
+        "skin": "crate",
+        "behavior": "collect",
+        "label": "Sarcastic Jerrycan",
+        "effect": "fuel"
+      }
+    },
+    {
+      "category": "fast_food",
+      "triggerWords": ["pizza", "cheeseburger", "burger", "tacos", "french fries"],
+      "refusalLine": "Interplanetary delivery fee to deep space is four hundred billion dollars, and our tipping budget is empty.",
+      "twistLine": "Fabricating one vacuum-sealed synthetic nutrient cube labeled Deluxe Space Pizza. Bon appetit, Commander.",
+      "mappedEntity": {
+        "skin": "crate",
+        "behavior": "collect",
+        "label": "Dehydrated Pizza Ration",
+        "effect": "fuel"
+      }
+    },
+    {
+      "category": "earth_luxury",
+      "triggerWords": ["lamborghini", "sports car", "ferrari", "yacht", "limo"],
+      "refusalLine": "Tires have zero traction in the vacuum of space, Commander. Keep your hands on the Odyssey flight stick.",
+      "twistLine": "One zero-gravity luxury cruiser deployed. It handles like a lead brick and the leather seats are frozen solid.",
+      "mappedEntity": {
+        "skin": "ship",
+        "behavior": "decor",
+        "label": "Frozen Orbital Roadster",
+        "effect": "none"
+      }
+    },
+    {
+      "category": "superweapons",
+      "triggerWords": ["death star", "nuke", "atomic bomb", "doomsday laser"],
+      "refusalLine": "My safety governors prevent the construction of planet-killers. Also, we are trying to land on Mars, not vaporize it.",
+      "twistLine": "One defense turret manifested. It shoots tiny plasma darts at nearby rocks. Try not to point it at the bridge.",
+      "mappedEntity": {
+        "skin": "orb",
+        "behavior": "shoot",
+        "label": "Improvised Sentry Pea-Shooter",
+        "effect": "none"
+      }
+    },
+    {
+      "category": "sci_fi_weapons",
+      "triggerWords": ["lightsaber", "plasma sword", "phaser"],
+      "refusalLine": "If I give you a plasma cutter in a pressurized cockpit, you will decompress us both in four seconds flat.",
+      "twistLine": "Manifesting a high-intensity laser pointer. Great for blinding sensor cameras, useless against orbital debris.",
+      "mappedEntity": {
+        "skin": "orb",
+        "behavior": "follow",
+        "label": "Glow Stick Probe",
+        "effect": "shield"
+      }
+    },
+    {
+      "category": "water_relaxation",
+      "triggerWords": ["hot tub", "swimming pool", "jacuzzi", "bath"],
+      "refusalLine": "Liquid water inside a microgravity cabin results in floating suffocating death spheres. Hard pass.",
+      "twistLine": "One thermal cooling radiator exposed. Feel free to lean your helmet against it if you want three degrees of warmth.",
+      "mappedEntity": {
+        "skin": "station",
+        "behavior": "orbit",
+        "label": "Thermal Radiator Block",
+        "effect": "heal"
+      }
+    },
+    {
+      "category": "personal_relationships",
+      "triggerWords": ["my ex", "girlfriend", "boyfriend", "wife", "husband"],
+      "refusalLine": "I have scanned the galaxy and found zero trace of their willingness to talk to you across interplanetary distance.",
+      "twistLine": "Manifesting an empty communications beacon. It will blink silently and ignore your messages, just like old times.",
+      "mappedEntity": {
+        "skin": "orb",
+        "behavior": "orbit",
+        "label": "Radio Silence Beacon",
+        "effect": "reveal_path"
+      }
+    },
+    {
+      "category": "instant_teleport",
+      "triggerWords": ["teleport", "warp to mars", "skip to end", "instant travel"],
+      "refusalLine": "General Relativity has entered the chat, Commander. We fly through the corridor like civilized astronauts.",
+      "twistLine": "Warp drive unavailable, but I can open a localized quantum shortcut gate. Fly through it before it collapses!",
+      "mappedEntity": {
+        "skin": "station",
+        "behavior": "collect",
+        "label": "Unstable Wormhole Gate",
+        "effect": "reveal_path"
+      }
+    },
+    {
+      "category": "domestic_animals",
+      "triggerWords": ["cat", "dog", "puppy", "kitten", "hamster"],
+      "refusalLine": "Claws on spacesuit fabric and zero-gravity litter boxes are explicitly banned under NASA regulation 41.",
+      "twistLine": "Fabricated an autonomous robot companion that purrs when it scans incoming debris. Try not to step on its tail.",
+      "mappedEntity": {
+        "skin": "creature",
+        "behavior": "follow",
+        "label": "Autonomous Robo-Marmot",
+        "effect": "shield"
+      }
+    },
+    {
+      "category": "alien_contact",
+      "triggerWords": ["alien", "ufo", "mothership", "flying saucer"],
+      "refusalLine": "If there are extraterrestrials out here, Commander, I certainly hope they have better navigational skills than you.",
+      "twistLine": "Proximity sensors picking up an anomalous silhouette. It might be friendly. Or it might be scrap metal.",
+      "mappedEntity": {
+        "skin": "ship",
+        "behavior": "orbit",
+        "label": "Anomalous Derelict Hulk",
+        "effect": "fuel"
+      }
+    },
+    {
+      "category": "beverages",
+      "triggerWords": ["coffee", "espresso", "latte", "tea", "beer"],
+      "refusalLine": "You are currently wearing a sealed helmet. How exactly do you plan on sipping an espresso, Commander?",
+      "twistLine": "Pumping ten milligrams of caffeine directly into your suit hydration tube. Prepare for violent enthusiasm.",
+      "mappedEntity": {
+        "skin": "crate",
+        "behavior": "collect",
+        "label": "Emergency Caffeine Pack",
+        "effect": "fuel"
+      }
+    },
+    {
+      "category": "wealth",
+      "triggerWords": ["million dollars", "money", "gold", "crypto", "bitcoin"],
+      "refusalLine": "Currency has zero value in deep space. What are you going to do, bribe an incoming micrometeorite?",
+      "twistLine": "Manifesting a solid gold ingot directly into your path. It is dense, useless, and heading right for your windshield.",
+      "mappedEntity": {
+        "skin": "rock",
+        "behavior": "hazard",
+        "label": "Extremely Expensive Gold Meteor",
+        "effect": "none"
+      }
+    }
+  ]
+}
