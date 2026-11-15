@@ -31,7 +31,7 @@
 - **Quiet / Normal Volume & Background Noise:** Because push-to-talk captures directly from `getUserMedia`, audio gain is normalized by the browser's native `autoGainControl: true`, `echoCancellation: true`, and `noiseSuppression: true`.
 - **10-Second Conversational Window:** In the current build, push-to-talk does not open a 10-second open listening window; instead, recording is subject to an 8-second hard-stop timer in `voiceV2.ts:105`.
 - **False Wake Rate & AI Speech Bleed:** With push-to-talk, idle false activations are 0%. However, if the player presses the mic button while NOVA is actively speaking through device speakers, NOVA's TTS audio bleeds into the mic stream (Logged as `BUG-005`).
-- **Model Load Time & Caching:** 0 ms client model load overhead, as no heavy client-side wake model (e.g., TensorFlow.js / ONNX) is bundled. Speech-to-action is processed server-side via Gemini 2.5 Flash.
+- **Model Load Time & Caching:** 0 ms client model load overhead, as no heavy client-side wake model (e.g., TensorFlow.js / ONNX) is bundled. Speech-to-action is processed server-side via Gemini 3.5 Flash Lite (`gemini-3.5-flash-lite`).
 - **Offline Resilience:** If offline, `SpeechRecognition` fails with `network`; system catches error and records local 16 kHz WAV. When `/api/turn` fails to connect, the client catches the fetch error, displays a non-blocking toast, and maintains the 60 FPS flight loop without crashing.
 
 | Environment | Speech Recognition | WAV Audio Fallback | Text Fallback & Chips | Mic Denied Behavior | Status |

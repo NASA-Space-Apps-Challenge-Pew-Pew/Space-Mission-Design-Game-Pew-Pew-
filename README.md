@@ -4,7 +4,7 @@
 
 <br /><br />
 
-<img src="./assets/logo.svg" alt="Dear NOVA Emblem" width="100" height="100" />
+<img src="./assets/logo.svg" alt="Dear NOVA Emblem" width="110" height="110" />
 
 # DEAR NOVA
 
@@ -15,7 +15,7 @@
 [![Framework](https://img.shields.io/badge/React-18.3-61dafb?logo=react&logoColor=black)](https://react.dev/)
 [![3D Engine](https://img.shields.io/badge/Three.js-R170-black?logo=three.js)](https://threejs.org/)
 [![Serverless](https://img.shields.io/badge/Vercel-Serverless-black?logo=vercel)](https://vercel.com/)
-[![AI Engine](https://img.shields.io/badge/Google_Gemini-2.5_Flash-4285f4?logo=google)](https://ai.google.dev/)
+[![AI Engine](https://img.shields.io/badge/Google_Gemini-3.5_Flash_Lite-4285f4?logo=google)](https://ai.google.dev/)
 [![Offline Speech](https://img.shields.io/badge/Vosk-Offline_WASM-success)](https://alphacephei.com/vosk/)
 [![Test Suite](https://img.shields.io/badge/Tests-45_Passed-10b981)](./tests/)
 
@@ -48,15 +48,19 @@
 
 ## 🚀 Project Overview
 
-**Dear NOVA** reimagines space mission design as a **real-time 3D flight game with an active voice AI co-pilot**. 
+**Dear NOVA** transforms the NASA space mission design challenge into a **real-time 3D flight game with an active voice AI co-pilot**.
 
-Instead of typing into a static turn-based chat box, you pilot the spacecraft ***Odyssey-1*** in 60 FPS flight while talking aloud to **NOVA**—the ship's autonomous AI. NOVA doesn't just answer questions; she has physical dominion over the local fabric of space. You can command her to summon repair drones, materialize fuel crates, deploy orbital escort fighters, reveal navigational course rings, or open spatial shortcuts.
+Instead of interacting through a static text chat box, you pilot the spacecraft ***Odyssey-1*** in a 60 FPS flight simulation while communicating aloud with **NOVA**—the ship's autonomous AI. NOVA doesn't merely chat; she controls the local fabric of space. You can speak to summon repair drones to fix hull breaches, materialize hypergolic fuel crates, deploy fighter drones to shoot asteroids, project navigational waypoint rings, or open warp gates.
 
 ### ⏱️ 30-Second Summary for Judges
-- **The Challenge:** NASA Space Apps "Space Mission Design Game"—teach orbital mechanics, budget trade-offs, and mission risks in an engaging game.
-- **The Innovation:** Dual-loop architecture separating a **60 FPS local arcade flight loop** (physics, inertia, collisions, entity behaviors) from an **asynchronous AI voice loop** (Vosk local wake word, browser WAV capture, and Google AI Studio Gemini function-calling on serverless endpoints).
-- **Core Mechanic:** The **Summoning Matrix** ($\text{Entity} = \text{Skin} \times \text{Behavior} \times \text{Label} \times \text{Effect}$). Any spoken request is safely mapped to bounded in-game entities with strict charge costs.
-- **Resilience:** Dual-path voice capture (local Vosk wake-word + Web Speech API + 16 kHz mono WAV fallback) with 100% playable keyboard and quick-command chips. Zero crashes on network drops.
+
+| Feature | Implementation in Dear NOVA |
+|---|---|
+| **The Challenge** | NASA Space Apps *"Space Mission Design Game"* — teach orbital mechanics, resource trade-offs, and deep-space risks through an interactive game. |
+| **The Architecture** | **Dual-Loop Separation:** Local **60 FPS client flight loop** (physics, inertia, sphere collisions, live entities) decoupled from an **asynchronous voice loop** (`vosk-browser` offline wake-word, browser WAV capture, and **Google Gemini 3.5 Flash Lite** function calling). |
+| **Core Gameplay** | **The Summoning Matrix:** $\text{Entity} = \text{Skin} \times \text{Behavior} \times \text{Label} \times \text{Effect}$. Any voice request maps dynamically to bounded in-game entities governed by charge limits. |
+| **AI Backend** | **Google Gemini 3.5 Flash Lite** (`gemini-3.5-flash-lite`) via official `@google/genai` SDK on Vercel Serverless Functions, with a pure deterministic offline rules engine fallback. |
+| **Zero-Failure Voice** | Tri-tier voice pipeline (local Vosk Web Worker wake word + Web Speech API + 16 kHz mono WAV fallback) plus keyboard text & quick chips. The game never crashes when mic is blocked or network drops. |
 
 <!-- TODO: Add Gameplay GIF here once recorded -->
 <!-- <div align="center"><img src="./assets/gameplay.gif" alt="Dear NOVA Gameplay Walkthrough" width="85%" /></div> -->
@@ -65,9 +69,12 @@ Instead of typing into a static turn-based chat box, you pilot the spacecraft **
 
 ## 🌌 Story & Premise
 
-Humanity's first crewed mission to Mars is underway aboard the deep-space transport ***Odyssey-1***. The crew rests in cryosleep. You are the Commander, awake to guide the ship through critical maneuvers.
+Humanity's first crewed mission to Mars is underway aboard the deep-space transport ***Odyssey-1***. The crew rests in cryosleep. You are the Commander, awake to guide the ship through orbital departure, interplanetary hazards, and atmospheric entry.
 
-Your sole companion is **NOVA** (*Neural Orbital Vector Assistant*), an experimental learning AI trained on simulation records of every commander before you. NOVA is helpful, sarcastic, and mischievous. Her quirks, monkey's-paw twists, and unexpected scares are not bugs—they are psychological stress tests to determine if you can keep your composure when things go sideways in deep space, and whether she can trust you with humanity's most expensive mission.
+Your sole companion is **NOVA** (*Neural Orbital Vector Assistant*), an experimental learning AI trained on simulation records of every commander before you. NOVA is helpful, sarcastic, and mischievous. Her quirks, monkey's-paw twists, and unexpected scares are not bugs—they are psychological stress tests to determine if you can maintain mission focus under extreme pressure, and whether she can safely trust you with humanity's most expensive mission.
+
+> **Commander:** *"NOVA, we took a hit from an asteroid and lost hull integrity!"*  
+> **NOVA (`grant_with_cost`):** *"Deploying autonomous repair drone to starboard. It will tether for 30 seconds. ...Also, I dimmed cabin lights by 20% to conserve battery. Enjoy the ambiance."*
 
 ---
 
@@ -113,7 +120,7 @@ $$\text{Entity} = \text{Skin} \times \text{Behavior} \times \text{Label} \times 
 ### 4. Tri-Tier Voice Architecture
 ```mermaid
 flowchart TD
-    AudioInput["Player Speaks\n(Mic Input)"] --> ModeCheck{"Input Channel"}
+    AudioInput["Player Speaks\n(Microphone Stream)"] --> ModeCheck{"Input Channel"}
     ModeCheck -->|"Fast Path"| WebSpeech["Web Speech API\n(Browser Native)"]
     ModeCheck -->|"Offline Wake Word"| VoskWorker["Vosk Web Worker\n(16kHz WASM Kaldi)"]
     ModeCheck -->|"Push-to-Talk"| WavRec["Custom WAV Encoder\n(16kHz Mono 16-bit)"]
@@ -125,7 +132,7 @@ flowchart TD
     WavRec -->|"Base64 Audio\n(Max 8s)"| ApiEndpoint["POST /api/turn\n(Vercel Serverless)"]
     TextFallback["Text Input &\nQuick-Command Chips"] -->|"Direct String"| ApiEndpoint
 
-    ApiEndpoint --> GeminiInference["Gemini 2.5 Flash\n(Function Calling)"]
+    ApiEndpoint --> GeminiInference["Gemini 3.5 Flash Lite\n(@google/genai Function Calling)"]
     GeminiInference --> RulesEngine["Rules Engine Validation\n(Arg ranges, costs, caps)"]
     RulesEngine --> ClientSync["Client Simulation\n(Spawns Entity / Adjusts Vitals)"]
 ```
@@ -204,7 +211,7 @@ graph TB
         RateLimit["IP Rate Limiter\n(60 req/min window)"]
         TurnRouter{"Execution Mode"}
         MockEngine["Deterministic Rules Engine\n(MOCK=1 or Offline Fallback)"]
-        GeminiClient["Google AI Studio SDK\n(@google/genai, Gemini 2.5 Flash)"]
+        GeminiClient["Google AI Studio SDK\n(@google/genai, Gemini 3.5 Flash Lite)"]
         ActionValidator["Action Pre-Validation\n(Arg ranges, Costs, Gating)"]
     end
 
@@ -230,7 +237,7 @@ graph TB
 | **@react-three/drei** | `^9.120.4` | 3D Scene Helpers | Provides optimized starfields, cameras, loaders, and procedural geometries. |
 | **Zustand** | `^5.0.1` | Client State Store | Zero-boilerplate, high-performance state store powering the 60 FPS flight loop. |
 | **vosk-browser** | `^0.0.8` | Local Voice Wake Word | Runs an offline 16 kHz Kaldi acoustic model in a Web Worker; zero audio leaves the device. |
-| **@google/genai** | `^3.3.0` | Serverless AI Backend | Official Google Gen AI SDK for Gemini function calling on `/api/turn`. |
+| **Google Gemini 3.5 Flash Lite**<br>(`@google/genai`) | `^3.3.0`<br>`gemini-3.5-flash-lite` | Serverless AI Backend | Official Google Gen AI SDK invoking **Gemini 3.5 Flash Lite** with native tool/function calling on `/api/turn`. Ultra-low latency and generous quota (15 RPM / 250K TPM). |
 | **Vercel Serverless** | Node.js 20+ | Backend Runtime | Zero-configuration serverless hosting with native TypeScript support and 30s `maxDuration`. |
 | **Lucide React** | `^0.460.0` | Cockpit UI Icons | Clean, lightweight SVG iconography for flight telemetry and gauges. |
 | **Canvas Confetti** | `^1.9.4` | Victory Screen | Instant celebratory particle burst on mission completion with zero DOM overhead. |
@@ -336,7 +343,7 @@ ALLOWED_ORIGIN=*
 MOCK=0
 ```
 
-> **Note:** If `GEMINI_API_KEY` is omitted or `MOCK=1`, the game automatically executes using the built-in deterministic rules engine. You can play through all acts offline without an API key!
+> **Note on Model Support:** `GEMINI_MODEL` defaults to `gemini-3.5-flash-lite`. You can also configure `gemini-3-flash` or `gemini-3.1-flash-lite` according to your Google AI Studio quota tier. If `GEMINI_API_KEY` is omitted or `MOCK=1`, the game automatically executes using the built-in deterministic rules engine. You can play through all acts offline without an API key!
 
 ---
 
