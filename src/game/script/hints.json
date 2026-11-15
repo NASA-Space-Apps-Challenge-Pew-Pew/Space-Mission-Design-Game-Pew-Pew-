@@ -1,0 +1,63 @@
+{
+  "version": 2,
+  "description": "Voice command suggestions, quick HUD chips, and flight tips for Dear NOVA V2",
+  "quickChips": [
+    { "label": "Repair Drone", "command": "NOVA, summon a repair drone." },
+    { "label": "Supply Crate", "command": "NOVA, summon a supply crate." },
+    { "label": "Escort Fighter", "command": "NOVA, summon an escort fighter." },
+    { "label": "Shield", "command": "NOVA, grant shield." },
+    { "label": "Show Path", "command": "NOVA, reveal path." },
+    { "label": "Boost", "command": "NOVA, grant boost." },
+    { "label": "Status", "command": "NOVA, status report." }
+  ],
+  "acts": {
+    "act0": {
+      "name": "Act 0: Wake-Up",
+      "suggestions": [
+        "NOVA, summon a supply crate.",
+        "Fix the hull please.",
+        "Spawn a defense drone.",
+        "Spawn a space whale."
+      ],
+      "tip": "Use W/S/A/D to steer, Shift to boost. Hold V or Space to speak to NOVA."
+    },
+    "act1": {
+      "name": "Act 1: Debris Field",
+      "suggestions": [
+        "NOVA, summon an escort fighter to shoot asteroids!",
+        "Deploy a repair drone right now!",
+        "Give me a five second shield!",
+        "Reveal the clear flight path!"
+      ],
+      "tip": "Asteroids and junk cause hull damage on collision. Summon escort fighters to shoot them down."
+    },
+    "act2": {
+      "name": "Act 2: Transit Corridor",
+      "suggestions": [
+        "NOVA, status report on our trajectory.",
+        "Summon a wormhole shortcut!",
+        "Spawn a beacon satellite ahead.",
+        "Refuel my thrusters please."
+      ],
+      "tip": "Fly through the green rings to maintain course. Manage your summon charges carefully."
+    },
+    "act3": {
+      "name": "Act 3: Mars Arrival",
+      "suggestions": [
+        "NOVA, reveal the descent path through the dust!",
+        "Grant shield against atmospheric heat!",
+        "Status on our landing altitude."
+      ],
+      "tip": "Dust reduces visibility. Keep your crosshair centered on the landing waypoint."
+    },
+    "act4": {
+      "name": "Act 4: Finale",
+      "suggestions": [
+        "NOVA, deploy our surface science instruments!",
+        "Transmit all mission data back to Earth!",
+        "Good job NOVA, we made it!"
+      ],
+      "tip": "Transmitting data locks in your final score and triggers your ending."
+    }
+  }
+}

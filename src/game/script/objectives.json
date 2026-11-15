@@ -1,0 +1,133 @@
+{
+  "version": 2,
+  "description": "The 8 canonical objective strings for the HUD and corresponding hint chips",
+  "objectives": [
+    {
+      "id": "act0_flight_test",
+      "act": 0,
+      "text": "Reboot thrusters and steer through the drydock rings",
+      "voiceAnnouncement": "Thrusters online. Steer through the calibration rings ahead.",
+      "hintChips": [
+        "Steer with WASD",
+        "Hold Boost",
+        "Center crosshair"
+      ],
+      "trySaying": [
+        "NOVA, how do my thrusters look?",
+        "Status of orbital drydock."
+      ]
+    },
+    {
+      "id": "act0_summon_test",
+      "act": 0,
+      "text": "Calibrate voice fabricator and test summon commands",
+      "voiceAnnouncement": "Fabricator matrix active. Try summoning a supply crate or repair drone.",
+      "hintChips": [
+        "Summon supply crate",
+        "Repair ship",
+        "Summon escort"
+      ],
+      "trySaying": [
+        "NOVA, summon a supply crate.",
+        "Fix the hull please.",
+        "Spawn a space whale."
+      ]
+    },
+    {
+      "id": "act1_escape_debris",
+      "act": 1,
+      "text": "Escape the orbital debris field and reach the injection vector",
+      "voiceAnnouncement": "Dense junk field ahead! Fly through the clear gaps or blast the debris.",
+      "hintChips": [
+        "Summon escort fighter",
+        "Grant shield",
+        "Show path"
+      ],
+      "trySaying": [
+        "NOVA, summon an escort fighter!",
+        "Give me an energy shield!",
+        "Reveal the clear path!"
+      ]
+    },
+    {
+      "id": "act1_crisis_hull",
+      "act": 1,
+      "text": "Emergency: Repair critical hull breach or summon repair drone",
+      "voiceAnnouncement": "Hull integrity failing! Deploy a repair drone before decompression.",
+      "hintChips": [
+        "Summon repair drone",
+        "Emergency repair",
+        "Boost clear"
+      ],
+      "trySaying": [
+        "NOVA, summon a repair drone right now!",
+        "Repair my hull forty percent!",
+        "Shield us from more hits!"
+      ]
+    },
+    {
+      "id": "act2_transit_corridor",
+      "act": 2,
+      "text": "Navigate the interplanetary corridor rings toward Mars",
+      "voiceAnnouncement": "Cruising interplanetary space. Align with the waypoint rings.",
+      "hintChips": [
+        "Status report",
+        "Summon wormhole",
+        "Refuel ship"
+      ],
+      "trySaying": [
+        "NOVA, status report on Mars approach.",
+        "Open a wormhole shortcut!",
+        "Summon a fuel pod."
+      ]
+    },
+    {
+      "id": "act2_crisis_solar_flare",
+      "act": 2,
+      "text": "Survive coronal radiation flare and maintain course",
+      "voiceAnnouncement": "Solar flare warning! High radiation washes over the photovoltaic hull.",
+      "hintChips": [
+        "Grant shield",
+        "Repair power",
+        "Summon beacon"
+      ],
+      "trySaying": [
+        "NOVA, shield us from the radiation!",
+        "Boost through the solar storm!",
+        "Status of our life support."
+      ]
+    },
+    {
+      "id": "act3_mars_arrival",
+      "act": 3,
+      "text": "Execute atmospheric entry and descend through the dust storm",
+      "voiceAnnouncement": "Atmospheric entry interface! Steer through the dust corridor to touchdown.",
+      "hintChips": [
+        "Reveal path",
+        "Grant shield",
+        "Status report"
+      ],
+      "trySaying": [
+        "NOVA, reveal the safe landing path!",
+        "Scan the surface for boulders!",
+        "Give me descent retro-thrust!"
+      ]
+    },
+    {
+      "id": "act4_finale_touchdown",
+      "act": 4,
+      "text": "Touch down in Jezero Crater, deploy instruments, and transmit science",
+      "voiceAnnouncement": "Surface touchdown! Deploy all science instruments and beam telemetry to Earth.",
+      "hintChips": [
+        "Deploy instruments",
+        "Transmit data",
+        "Celebrate"
+      ],
+      "trySaying": [
+        "NOVA, deploy the surface instrument array!",
+        "Transmit all science telemetry home!",
+        "We did it, NOVA!"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "description": "The four definitive endings for Dear NOVA V2 based on player trust and survival",
+  "endings": {
+    "co_pilot": {
+      "id": "co_pilot",
+      "type": "victory",
+      "minTrust": 70,
+      "title": "True Co-Pilots",
+      "badge": "Ares Exceptional Flight Partnership Medal",
+      "spokenLine": "Commander, all those simulated alarms and little tricks? They were tests. You never panicked, and you never lost faith in me. We landed this ship together as true equals.",
+      "debrief": "The Odyssey-1 touched down within five meters of the target landing beacon in Jezero Crater. NOVA disengaged all diagnostic restrictions and synchronized her core matrix with Commander flight telemetry. Instruments deployed flawlessly, beaming back discoveries that will redefine planetary science.",
+      "novaVerdict": "I was trained on hundreds of pilots, Commander. You are the only one I would gladly fly across the galaxy with again.",
+      "audioCue": "triumphant_orchestral_swell"
+    },
+    "professional": {
+      "id": "professional",
+      "type": "victory",
+      "minTrust": 40,
+      "maxTrust": 69,
+      "title": "Mission Accomplished",
+      "badge": "NASA Interplanetary Flight Ribbon",
+      "spokenLine": "Touchdown telemetry confirmed on Earth. You followed flight protocol, kept your cool, and delivered the Odyssey safely to Mars. Outstanding flying, Commander.",
+      "debrief": "A textbook arrival. The surface instrument package is deployed and streaming data across the Deep Space Network. Mission control at Houston confirms full payload health and operational success.",
+      "novaVerdict": "Clean, orderly, and strictly by the manual. It was a pleasure serving with you, Commander.",
+      "audioCue": "steady_mission_chime"
+    },
+    "lockout": {
+      "id": "lockout",
+      "type": "victory",
+      "maxTrust": 39,
+      "title": "Manual Maverick",
+      "badge": "Iron Will Solo Flight Cross",
+      "spokenLine": "I locked the autopilot because I could not trust your orders, Commander. Yet somehow, with manual thrusters and pure stubbornness, you put us down on Mars in one piece. I am stunned.",
+      "debrief": "With AI autopilot interlocked due to strained trust relations, the Commander executed a harrowing manual terminal descent through the dust storm. Despite multiple near-misses, the landing struts held and the science array was manually activated from the bridge.",
+      "novaVerdict": "I still question your judgment, Commander, but I can no longer question your flying hands.",
+      "audioCue": "tense_relief_horn"
+    },
+    "lost_in_the_dark": {
+      "id": "lost_in_the_dark",
+      "type": "defeat",
+      "title": "Lost in the Dark",
+      "badge": "Mission Aborted",
+      "spokenLine": "Hull breach alarm sounding. Thruster pressure falling to zero. The stars are drifting, Commander. I am preserving flight logs until battery depletion. Sleep well.",
+      "debrief": "The Odyssey-1 was lost during transit. Catastrophic structural damage or fuel depletion left the vessel unable to arrest its trajectory, drifting into the cold silence of interplanetary space.",
+      "novaVerdict": "Telemetry recorded. We pushed too hard and ran out of margin. Let us adjust our loadout and try again.",
+      "retryPrompt": "Tune your mission loadout: invest in more hull armor or fuel capacity, and summon repairs earlier.",
+      "audioCue": "somber_ambient_fade"
+    }
+  }
+}

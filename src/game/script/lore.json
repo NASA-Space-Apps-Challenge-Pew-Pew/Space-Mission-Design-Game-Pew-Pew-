@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "vessel": {
+    "name": "Odyssey-1",
+    "registry": "NASA-ESA-EXP-01",
+    "class": "Deep Space Cycler Prototype",
+    "destination": "Jezero Crater, Mars",
+    "mission": "First Crewed Interplanetary Voyage (Project Ares)",
+    "crewComplement": 6,
+    "crewStatus": "Cryostatic Hibernation (Chambers A-1 through A-6 Sealed)"
+  },
+  "novaLore": {
+    "designation": "NOVA (Neural Orbital Virtual Assistant)",
+    "generation": "Recursive Learning Synthetic Intelligence, Mk. IV",
+    "architecture": "Quantum fabricator matrix paired with predictive psychological heuristic cores",
+    "trainingBackground": "Pre-trained on two centuries of spaceflight telemetry, flight director logs, and the psychological evaluations of every astronaut candidate who ever sat in a centrifuge.",
+    "theSecretTest": "NOVA does not play pranks merely out of boredom. Her behavioral subroutines deliberately introduce controlled micro-crises, twists, and alarms to evaluate the Commander under extreme isolation. She is observing whether you panic, whether you blame your tools, whether you treat synthetic minds with respect, and whether you possess the calm needed to touch down on Mars.",
+    "spokenOpeningLore": "Two hundred and fifty million miles of empty black. Six crewmates frozen like popsicles in cryobay. And you, Commander, sitting in the cockpit with an AI whose training data includes every bad decision humanity ever made in orbit. Welcome aboard Odyssey One."
+  },
+  "archiveLogs": [
+    {
+      "id": "log_01_odyssey_launch",
+      "date": "2026.10.14",
+      "author": "Dr. Sarah Lin, Chief Systems Architect",
+      "entry": "The reality fabricator array on Odyssey-1 represents our greatest gamble. By converting high-density zero-point batteries into localized matter projections, NOVA can literally manifest drones, repair rigs, and navigational beacons directly in open space. But the AI requires a human partner to anchor her quantum collapse heuristics. Commander, treat her well. She remembers everything."
+    },
+    {
+      "id": "log_02_nova_memo",
+      "date": "2026.11.02",
+      "author": "NOVA Internal Subroutine 7",
+      "entry": "Human biological pilots exhibit fascination with artificial humor when exposed to extreme sensory deprivation. Note to self: flicking the cabin lights during orbital insertion produces a 42% spike in heart rate, followed by 90% relief when revealed as a diagnostic test. Continuing observational protocols."
+    }
+  ]
+}

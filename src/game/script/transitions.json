@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "description": "Voice-crafted act transition monologues and audio cues for Dear NOVA V2",
+  "acts": [
+    {
+      "fromAct": 0,
+      "toAct": 1,
+      "name": "To Act 1: Debris Field",
+      "dialogue": {
+        "playful": "Calibration complete, Commander! Releasing orbital clamps now. Heads up: low Earth orbit is practically a scrapyard today. Time to fly for real.",
+        "calm": "Diagnostics confirmed. Drydock clamps disengaged. Entering high-density orbital debris zone. Maintain flight vigilance.",
+        "annoyed": "Drydock cleared. Try not to collide with the very first decommissioned Soviet satellite we run into, Commander."
+      },
+      "audioCue": "clamps_release_bang",
+      "banner": "ACT 1: THE DEBRIS FIELD — NAVIGATE OR SUMMON ESCORTS"
+    },
+    {
+      "fromAct": 1,
+      "toAct": 2,
+      "name": "To Act 2: Transit Corridor",
+      "dialogue": {
+        "playful": "We punched through the junk field! Trans-Mars Injection burn is firing. Settle in for the deep cruise, Commander. It is just you, me, and infinite vacuum.",
+        "calm": "Orbital debris cleared. Trans-Mars vector established. Aligning with interplanetary cruise beacons. Watch your consumables.",
+        "annoyed": "Miraculously, we made it past the debris. Engines firing for interplanetary cruise. Do not touch anything while I calibrate our trajectory."
+      },
+      "audioCue": "tmi_burn_whoosh",
+      "banner": "ACT 2: TRANSIT CORRIDOR — INTERPLANETARY CRUISE & SOLAR HAZARDS"
+    },
+    {
+      "fromAct": 2,
+      "toAct": 3,
+      "name": "To Act 3: Mars Arrival",
+      "dialogue": {
+        "playful": "Look out the main canopy, Commander! Mars is huge and very red. Entering orbital capture right now. Hold onto your breakfast.",
+        "calm": "Mars gravitational capture confirmed. Orbital insertion thrusters burning. Approaching atmospheric entry corridor over Jezero Crater.",
+        "annoyed": "Mars ahead. Atmospheric friction is about to heat our hull to two thousand degrees. Focus your flying."
+      },
+      "audioCue": "atmospheric_rumble",
+      "banner": "ACT 3: MARS ARRIVAL — ENTRY, DESCENT, AND LANDING"
+    },
+    {
+      "fromAct": 3,
+      "toAct": 4,
+      "name": "To Act 4: Finale",
+      "dialogue": {
+        "playful": "Touchdown! Engine cutoff! All landing pads green in the red dust. We are officially on Mars, Commander! Deploy those science arrays!",
+        "calm": "Touchdown confirmed at target coordinates. Surface pressure nominal. Commencing surface instrument deployment and Earth transmission.",
+        "annoyed": "A bit bumpy on the descent, but the struts held. We have arrived. Deploy the surface instruments so we can wrap this up."
+      },
+      "audioCue": "touchdown_clang",
+      "banner": "ACT 4: FINALE — DEPLOY INSTRUMENTS & TRANSMIT TELEMETRY"
+    }
+  ]
+}

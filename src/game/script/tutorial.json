@@ -1,0 +1,114 @@
+{
+  "version": 2,
+  "act": 0,
+  "title": "Act 0: Wake-Up Protocol",
+  "setting": "Earth Orbital Drydock, Ares Staging Platform",
+  "description": "Onboard diagnostics reboot while the Commander shakes off cryo-lag.",
+  "steps": [
+    {
+      "step": 1,
+      "id": "movement",
+      "instruction": "Steer through the green navigation ring ahead.",
+      "controlsHint": "Desktop: W/S for thrust, A/D to strafe, Mouse to steer | Mobile: Left stick to move, drag right to look",
+      "spokenLine": "Systems coming online. Shake off that cryo-lag, Commander, and steer us through that green ring ahead.",
+      "completionTrigger": "ring_cleared_1",
+      "skipAllowed": true
+    },
+    {
+      "step": 2,
+      "id": "boost",
+      "instruction": "Engage afterburners to clear the secondary ring.",
+      "controlsHint": "Desktop: Hold Shift | Mobile: Tap and hold Boost button",
+      "spokenLine": "Engines are still cold. Hold down the boost and punch through the next ring before our orbital window slips.",
+      "completionTrigger": "ring_cleared_2",
+      "skipAllowed": true
+    },
+    {
+      "step": 3,
+      "id": "voice_preset_summon",
+      "instruction": "Activate your comms and summon a supply crate.",
+      "controlsHint": "Desktop: Hold V or Space (or tap mic button) | Mobile: Tap big mic button | Text: Use quick chip",
+      "spokenLine": "My language core is warming up. Let us test reality fabricators. Say: NOVA, summon a supply crate.",
+      "suggestedPhrases": [
+        "NOVA, summon a supply crate.",
+        "Spawn a supply crate.",
+        "I need fuel supplies."
+      ],
+      "completionTrigger": "summon_supply_crate",
+      "skipAllowed": true
+    },
+    {
+      "step": 4,
+      "id": "voice_repair_choice",
+      "instruction": "Ask NOVA to repair the hull damage from drydock release.",
+      "controlsHint": "Speak naturally or tap a quick command",
+      "spokenLine": "Hull micro-sensors took a nick during drydock release. Try asking me to fix it in your own words.",
+      "suggestedPhrases": [
+        "NOVA, repair the hull.",
+        "Fix the ship please.",
+        "Summon a repair drone."
+      ],
+      "completionTrigger": "repair_or_drone",
+      "skipAllowed": true
+    },
+    {
+      "step": 5,
+      "id": "creative_summon",
+      "instruction": "Test NOVA's generative fabricator. Ask for anything you want.",
+      "controlsHint": "Try summoning an escort, a space creature, a shield, or something silly",
+      "spokenLine": "Final calibration, Commander. Ask me for anything you can imagine. Let us see how flexible my fabricator array really is.",
+      "suggestedPhrases": [
+        "Summon an escort fighter.",
+        "Spawn a giant space whale.",
+        "Give me an energy shield.",
+        "Spawn a laser turret."
+      ],
+      "completionTrigger": "any_creative_summon",
+      "skipAllowed": true
+    }
+  ],
+  "loadoutScreen": {
+    "title": "Mission Architecture Loadout",
+    "prompt": "Allocate 10 mission upgrade points before clearing Earth orbit. These choices directly affect your ship handling, durability, reality fabrication capacity, and final scientific score.",
+    "totalPoints": 10,
+    "categories": [
+      {
+        "id": "fuelTank",
+        "name": "Fuel Tank Capacity",
+        "description": "Increases thruster fuel reserves and afterburner boost duration.",
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "statMultiplier": "+20% boost capacity per point"
+      },
+      {
+        "id": "hullArmor",
+        "name": "Hull Armor Plating",
+        "description": "Reinforces micrometeoroid and debris collision resilience.",
+        "default": 3,
+        "min": 1,
+        "max": 5,
+        "statMultiplier": "+25% collision health per point"
+      },
+      {
+        "id": "summonCharges",
+        "name": "Quantum Fabricator Cores",
+        "description": "Increases maximum summon charges and accelerates charge regeneration.",
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "statMultiplier": "+1 max charge and faster recharge per point"
+      },
+      {
+        "id": "sciencePayload",
+        "name": "Science Sensor Package",
+        "description": "Heavier planetary instruments. Enhances final mission victory score upon landing.",
+        "default": 2,
+        "min": 1,
+        "max": 5,
+        "statMultiplier": "+500 final mission score points per point"
+      }
+    ],
+    "confirmButtonText": "Lock In Flight Profile & Launch"
+  }
+}

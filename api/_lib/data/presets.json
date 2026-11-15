@@ -1,0 +1,93 @@
+{
+  "version": 2,
+  "description": "Named entity presets for Dear NOVA V2 summon engine",
+  "limits": {
+    "maxLiveEntities": 12,
+    "maxSpawnPerRequest": 5,
+    "maxSummonCharges": 5,
+    "chargeRegenSeconds": 20
+  },
+  "skins": ["orb", "crate", "rock", "ship", "creature", "station"],
+  "behaviors": ["follow", "orbit", "collect", "hazard", "decor", "shoot"],
+  "effects": ["heal", "fuel", "shield", "reveal_path", "none"],
+  "presets": [
+    {
+      "id": "supply_crate",
+      "skin": "crate",
+      "behavior": "collect",
+      "effect": "fuel",
+      "chargeCost": 1,
+      "fuelGainPct": 25,
+      "label": "Fuel Supply Crate",
+      "description": "Replenishes 25% thruster propellant upon collision."
+    },
+    {
+      "id": "repair_drone",
+      "skin": "ship",
+      "behavior": "follow",
+      "effect": "heal",
+      "chargeCost": 2,
+      "durationSeconds": 30,
+      "healPctTotal": 30,
+      "label": "Automated Repair Drone",
+      "description": "Follows the vessel for 30 seconds and restores 30% hull integrity."
+    },
+    {
+      "id": "escort_fighter",
+      "skin": "ship",
+      "behavior": "shoot",
+      "effect": "shield",
+      "chargeCost": 2,
+      "label": "Escort Interceptor",
+      "description": "Flies wingman formation and destroys incoming asteroids and debris."
+    },
+    {
+      "id": "beacon_satellite",
+      "skin": "orb",
+      "behavior": "orbit",
+      "effect": "reveal_path",
+      "chargeCost": 1,
+      "label": "Navigational Beacon Satellite",
+      "description": "Projects waypoint trajectory rings through hazard fields."
+    },
+    {
+      "id": "wormhole_shortcut",
+      "skin": "station",
+      "behavior": "collect",
+      "effect": "reveal_path",
+      "chargeCost": 4,
+      "label": "Quantum Shortcut Gate",
+      "description": "Space-folding ring gate that leaps past 50% of the active obstacle field."
+    },
+    {
+      "id": "derelict_ship",
+      "skin": "ship",
+      "behavior": "decor",
+      "effect": "fuel",
+      "chargeCost": 2,
+      "label": "Abandoned Deep Space Salvage",
+      "description": "Derelict hull that provides a salvageable resource cache and audio lore log."
+    },
+    {
+      "id": "asteroids",
+      "skin": "rock",
+      "behavior": "hazard",
+      "effect": "none",
+      "chargeCost": 0,
+      "novaControlled": true,
+      "label": "Stray Asteroid Cluster",
+      "description": "Kinetic hazard used by NOVA for drills, twists, or tests."
+    },
+    {
+      "id": "ghost_ship",
+      "skin": "ship",
+      "behavior": "decor",
+      "effect": "none",
+      "chargeCost": 0,
+      "novaControlled": true,
+      "minScareLevel": 2,
+      "label": "Anomalous Phantom Hull",
+      "description": "Jump-scare apparition appearing during full scare mode."
+    }
+  ]
+}

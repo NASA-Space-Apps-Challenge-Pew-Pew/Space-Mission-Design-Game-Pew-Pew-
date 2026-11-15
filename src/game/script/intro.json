@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "mission": {
+    "title": "Ares Odyssey-1",
+    "destination": "Mars (Jezero Crater)",
+    "year": 2026,
+    "crewStatus": "Cryostatic Hibernation (Chambers 1-6 Green)",
+    "activePersonnel": "Mission Commander (You)",
+    "aiSystem": "NOVA (Neural Orbital Virtual Assistant)",
+    "technology": "Quantum Matter Fabricator Array"
+  },
+  "introMonologue": {
+    "spokenLines": [
+      "Wake up, Commander. Vitro-cryo flush complete. Try not to wipe the sleep from your eyes too quickly; we are already in high Earth orbit.",
+      "I am NOVA, your neural flight assistant. The rest of the crew is sleeping soundly in cryobay, which leaves you and me to pilot the Odyssey One to Mars.",
+      "Our thrusters are initialized and the quantum reality fabricator is charged. You fly the ship, and you tell me what you need—repairs, escorts, shields, or fuel.",
+      "Press V or hold Space to talk to me, or tap the mic button. Let us start by steering through that green ring ahead."
+    ],
+    "fullText": "Wake up, Commander. Vitro-cryo flush complete. I am NOVA, your neural flight assistant. The rest of the crew is asleep in cryobay, leaving you and me to pilot the Odyssey One to Mars. Our thrusters are initialized and our quantum reality fabricator is charged. You fly the ship, and you tell me what to summon. Steer through that green ring ahead to begin."
+  },
+  "uiCopy": {
+    "welcomeBanner": "ODYSSEY-1 MISSION CONTROL",
+    "subtitle": "Real-Time Voice Flight & Matter Fabrication Simulator",
+    "commanderRole": "Active Pilot: Mission Commander",
+    "aiRole": "Co-Pilot & Reality Fabricator: NOVA",
+    "startButton": "Initiate Wake-Up Flight Test",
+    "skipIntroButton": "Skip to Flight Controls",
+    "audioNotice": "Voice control active. Speak commands or tap quick chips to summon assistance."
+  }
+}
